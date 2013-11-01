@@ -29,8 +29,7 @@ reg_id CHAR(10),
 user_id CHAR(10),
 start DATETIME NOT NULL,
 end DATETIME NOT NULL,
-FOREIGN KEY (fac_id) REFERENCES facility(fac_id),
-FOREIGN KEY (reg_id) REFERENCES region(reg_id),
+FOREIGN KEY (fac_id, reg_id) REFERENCES facility(fac_id, reg_id),
 FOREIGN KEY (user_id) REFERENCES user(user_id),
 PRIMARY KEY (book_id),
 CHECK (end > start)
@@ -43,8 +42,7 @@ whiteboard BOOLEAN,
 audio_system BOOLEAN,
 projector BOOLEAN,
 type VARCHAR(100),
-FOREIGN KEY (fac_id) REFERENCES facility(fac_id),
-FOREIGN KEY (reg_id) REFERENCES region(reg_id),
+FOREIGN KEY (fac_id, reg_id) REFERENCES facility(fac_id, reg_id),
 PRIMARY KEY (fac_id,reg_id)
 );
 
@@ -54,7 +52,6 @@ reg_id CHAR(10),
 scoreboard BOOLEAN,
 spectator_area BOOLEAN,
 type VARCHAR(100),
-FOREIGN KEY (fac_id) REFERENCES facility(fac_id),
-FOREIGN KEY (reg_id) REFERENCES region(reg_id),
+FOREIGN KEY (fac_id, reg_id) REFERENCES facility(fac_id, reg_id),
 PRIMARY KEY (fac_id,reg_id)
 );
