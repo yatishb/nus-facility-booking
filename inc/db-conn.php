@@ -1,7 +1,7 @@
 <?php
 function setup_db()
 {
-	$conn=mysql_connect("localhost","root","","cs2102");
+	$conn=mysql_connect("localhost","cs2102","pass","cs2102");
 	mysql_select_db("cs2102",$conn);
 	// Check connection
 	if (!$conn)
