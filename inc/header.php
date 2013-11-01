@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,9 +23,15 @@
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
           <li id="mastlink-home"><a href="/cs2102/index.php">Home</a></li>
-          <li id="mastlink-login"><a href="/cs2102/inc/login.php">Login</a></li>
+          <?php
+	          if (isset($_SESSION['username'])) {
+	      ?>
+	        <li id="mastlink-login"><a href="">Hi <?php echo $_SESSION['name']; ?>!</a></li>
+	      <?php } else{ ?>
+	      	<li id="mastlink-login"><a href="/cs2102/inc/login.php">Login</a></li>
+	      <?php	 } ?>
         </ul>
         <h3 class="muted">NUS Bookings</h3>
       </div>
-
+      <?php include("db-conn.php"); ?>
       <hr>
