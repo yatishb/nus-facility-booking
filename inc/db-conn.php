@@ -13,7 +13,6 @@ function setup_db()
 		return $conn;
 	}
 }
-
 function close_db($conn)
 {
 	mysql_close($conn);
