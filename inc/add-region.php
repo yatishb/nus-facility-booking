@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 
 	if(isset($_POST["back"])){
-		header('Location: /cs2102/inc/adminpanel.php');
+		header('Location: /cs2102/inc/admin-panel.php');
 	}
 }
 
