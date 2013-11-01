@@ -10,10 +10,10 @@ if (!isset($_SESSION['username'])) {
 
 
 <?php
-$username_login = $_POST['username-login'];
-$pass_login = md5($_POST['pass-login']);
 if(isset($_POST['username-login']))
 {
+	$username_login = $_POST['username-login'];
+	$pass_login = md5($_POST['pass-login']);
 	$con= setup_db();
 	$email = mysql_real_escape_string($username_login);
 
@@ -44,13 +44,14 @@ if(isset($_POST['username-login']))
 ?>
 
 <?php
-$name_register = $_POST['name-register'];
-$username_register = $_POST['username-register'];
-$pass1 = md5($_POST['pass1-register']);
-$pass2 = md5($_POST['pass2-register']);
+
 
 if(isset($_POST['username-register']))
 {
+	$name_register = $_POST['name-register'];
+	$username_register = $_POST['username-register'];
+	$pass1 = md5($_POST['pass1-register']);
+	$pass2 = md5($_POST['pass2-register']);
 	$con= setup_db();
 	$name = mysql_real_escape_string($name_register);
 	$email = mysql_real_escape_string($username_register);
