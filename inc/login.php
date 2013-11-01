@@ -4,10 +4,6 @@
 document.getElementById("mastlink-login").className = "active";
 </script>
 
-<?php
-if (!isset($_SESSION['username'])) {
-?>
-
 
 <?php
 if(isset($_POST['username-login']))
@@ -84,9 +80,7 @@ if(isset($_POST['username-register']))
         <h2 class="form-signin-heading">Login</h2>
         <input type="text" name = "username-login" class="input-block-level" placeholder="Matric number">
         <input type="password" name = "pass-login" class="input-block-level" placeholder="Password">
-        <label class="checkbox">
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
+     
         <button class="btn btn-large btn-primary" type="submit">Login</button>
       </form>
 	</div>
@@ -97,8 +91,6 @@ if(isset($_POST['username-register']))
         <input type="text" name = "username-register" class="input-block-level" placeholder="Matric No">
         <input type="password" name = "pass1-register" class="input-block-level" placeholder="Password">
         <input type="password" name = "pass2-register" class="input-block-level" placeholder="Confirm Password">
-        <label class="checkbox">
-        </label>
         <button class="btn btn-large btn-primary" type="submit">Sign Up</button>
       </form>
 	</div>
@@ -106,9 +98,8 @@ if(isset($_POST['username-register']))
 </div>
 </div>
 
-<?php } else{ ?>
+<?php if (isset($_SESSION['username'])) { ?>
 <script>window.location.href = "/cs2102/index.php"; </script>
-<?php	 } ?>
-
+<?php } ?>
 
 <?php include("footer.php"); ?>

@@ -26,7 +26,7 @@
           <?php
 	          if (isset($_SESSION['username'])) {
 	      ?>
-	        <li id="mastlink-login"><a href="">Hi <?php echo $_SESSION['name']; ?>!</a></li>
+	        <li id="mastlink-login"><a href="/cs2102/inc/logout.php">Hi <?php echo $_SESSION['name']; ?>!</a></li>
 	      <?php } else{ ?>
 	      	<li id="mastlink-login"><a href="/cs2102/inc/login.php">Login</a></li>
 	      <?php	 } ?>
