@@ -31,7 +31,7 @@
 	      	<li id="mastlink-login"><a href="/cs2102/inc/login.php">Login</a></li>
 	      <?php	 } ?>
         </ul>
-        <h3 class="muted">NUS Bookings</h3>
+        <a id="logo" class="nodec" href="/cs2102/index.php"><img src = "/cs2102/img/logo.png" height="2000" width="230"></a>
       </div>
       <?php include("db-conn.php"); ?>
       <hr>
