@@ -3,10 +3,6 @@
 document.getElementById("mastlink-home").className = "active";
 </script>
 
-<div class="home-holder">
-	
-</div><br><br>
-<div class="map-holder">
 <img src="/cs2102/img/map.png" alt="" usemap="#map" >
 <map name="map">
     <area shape="poly" coords="173, 525, 197, 511, 224, 507, 261, 513, 285, 539, 246, 529, 270, 580, 249, 588, 271, 550, 239, 537, 245, 527, 237, 525, 219, 525, 176, 524, 218, 532, 216, 535, 194, 512, 224, 506, 261, 514, 246, 541, 268, 532, 272, 566, 248, 588, 279, 549, 251, 535" href="/cs2102/inc/search.html" class="bgblue"/>
@@ -27,6 +23,6 @@ document.getElementById("mastlink-home").className = "active";
     <area shape="poly" coords="71, 527, 141, 522, 159, 542, 171, 546, 196, 553, 209, 565, 225, 568, 246, 588, 227, 604, 242, 623, 242, 642, 257, 661, 254, 698, 240, 723, 212, 703, 186, 699, 155, 697, 140, 697, 121, 671, 94, 648, 76, 643, 64, 596, 63, 555" />
     <area shape="poly" coords="88, 466, 111, 462, 125, 446, 147, 416, 191, 418, 188, 465, 188, 490, 160, 510, 133, 506, 113, 499, 104, 509, 78, 505" />
 </map>
-</div>
+
 
 <?php include("inc/footer.php"); ?>

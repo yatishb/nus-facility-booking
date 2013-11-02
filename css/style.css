@@ -37,3 +37,33 @@ padding: 14px 24px;
 	border-right: 1px solid #e4e4e4;
 	padding-right: 20px;
 }
+
+.nodec {
+	text-decoration: none;
+}
+
+.nusblue {
+	color: #4c7bc2;
+}
+
+.home-holder {
+	border: 1px solid #ff9200;
+	height: 300px;
+	border-radius: 10px;
+	width: 90%;
+	margin: 0 auto;
+	background-image: url('/cs2102/img/feature.png');
+}
+
+.map-holder {
+	border: 1px solid #3091c4;
+	height: 1000px;
+	border-radius: 10px;
+	width: 90%;
+	margin: 0 auto;
+}
+
+.bgblue {
+	background-color: black;
+}
+

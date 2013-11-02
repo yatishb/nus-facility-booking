@@ -77,21 +77,21 @@ if(isset($_POST['username-register']))
 <div class = "row center">
 	<div class = "span4 offset2 border-right">
 	  <form class="form-signin" action="login.php" method="post">
-        <h2 class="form-signin-heading">Login</h2>
+        <h2 class="form-signin-heading nusblue">Login</h2>
         <input type="text" name = "username-login" class="input-block-level" placeholder="Matric number">
         <input type="password" name = "pass-login" class="input-block-level" placeholder="Password">
      
-        <button class="btn btn-large btn-primary" type="submit">Login</button>
+        <button class="btn btn-warning" type="submit">Login</button>
       </form>
 	</div>
 	<div class = "span4">
 	  <form class="form-signin" action="login.php" method="post">
-        <h2 class="form-signin-heading">Register</h2>
+        <h2 class="form-signin-heading nusblue">Register</h2>
         <input type="text" name = "name-register" class="input-block-level" placeholder="Name">
         <input type="text" name = "username-register" class="input-block-level" placeholder="Matric No">
         <input type="password" name = "pass1-register" class="input-block-level" placeholder="Password">
         <input type="password" name = "pass2-register" class="input-block-level" placeholder="Confirm Password">
-        <button class="btn btn-large btn-primary" type="submit">Sign Up</button>
+        <button class="btn btn-warning" type="submit">Sign Up</button>
       </form>
 	</div>
 </div>
