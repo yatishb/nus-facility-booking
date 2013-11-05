@@ -17,7 +17,8 @@
   </head>
 
   <body>
-
+  	  <script src="https://code.jquery.com/jquery.js"></script>
+	  <script src="/cs2102/js/bootstrap.js"></script>
       <div class="container-narrow">
 
       <div class="masthead">
@@ -26,12 +27,22 @@
           <?php
 	          if (isset($_SESSION['username'])) {
 	      ?>
-	        <li id="mastlink-login"><a href="/cs2102/inc/logout.php">Hi <?php echo $_SESSION['name']; ?>!</a></li>
+	        <li class="dropdown">
+			    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+			      Hi <?php echo $_SESSION['name']; ?>! <span class="caret"></span>
+			    </a>
+			    <ul class="dropdown-menu">
+			      <li><a href="#">History</a></li>
+			      <li><a href="#">Profile</a></li>
+			      <li class="divider"></li>
+			      <li><a href="/cs2102/inc/logout.php">Logout</a></li>
+			    </ul>
+			</li>
 	      <?php } else{ ?>
 	      	<li id="mastlink-login"><a href="/cs2102/inc/login.php">Login</a></li>
 	      <?php	 } ?>
         </ul>
-        <a id="logo" class="nodec" href="/cs2102/index.php"><img src = "/cs2102/img/logo.png" height="2000" width="230"></a>
+        <a id="logo" class="nodec" href="/cs2102/index.php"><img src = "/cs2102/img/logo.png" height="52" width="240"></a>
       </div>
       <?php include("db-conn.php"); ?>
       <hr>
