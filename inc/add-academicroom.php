@@ -81,16 +81,16 @@
 			if($flag) {
 				$reg_id = $_POST["region"];
 				if($capacity == NULL) {
-					$insertQuery1 = "INSERT INTO facility(fac_id, reg_id, open_time, close_time) 
-						VALUES(".$fac_id.",".$reg_id.", '".$open."', '".$close."');";
+					$insertQuery1 = "INSERT INTO facility(fac_id, reg_id, open_time, close_time, name) 
+						VALUES(".$fac_id.",".$reg_id.", '".$open."', '".$close."','".$fac."'');";
 					$success1 = mysql_query($insertQuery1);
 				} else {
-					$insertQuery1 = "INSERT INTO facility(fac_id, reg_id, open_time, close_time, capacity) 
-						VALUES(".$fac_id.",".$reg_id.", '".$open."', '".$close."',".$capacity.");";
+					$insertQuery1 = "INSERT INTO facility(fac_id, reg_id, open_time, close_time, capacity, name) 
+						VALUES(".$fac_id.",".$reg_id.", '".$open."', '".$close."',".$capacity.",'".$fac."');";
 					$success1 = mysql_query($insertQuery1);
 				}
-				$insertQuery2 = "INSERT INTO academic(fac_id, reg_id, whiteboard, audio_system, projector, type) 
-					VALUES(".$fac_id.",".$reg_id.", ".$whiteboard.", ".$audio.",".$proj.",'".$fac."');";
+				$insertQuery2 = "INSERT INTO academic(fac_id, reg_id, whiteboard, audio_system, projector) 
+					VALUES(".$fac_id.",".$reg_id.", ".$whiteboard.", ".$audio.",".$proj.");";
 				$success2 = mysql_query($insertQuery2);
 			}
 		}
@@ -151,7 +151,7 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if($success1 && $success2 && isset($_POST["create"])) {
-		echo "The Academic room has been successfully created";
+		echo "The Academic room ".$fac." has been successfully created";
 	} else {
 		echo "Could not create the room";
 		if($success1 == 1) {
