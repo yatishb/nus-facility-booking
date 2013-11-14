@@ -73,24 +73,24 @@ if(isset($_POST['username-register']))
 
 
 <div class = "row center">
-<div class = "span10 center">
+<div class = "col-md-10 center">
 <div class = "row center">
-	<div class = "span4 offset2 border-right">
+	<div class = "col-md-4 col-md-offset-2 border-right">
 	  <form class="form-signin" action="login.php" method="post">
         <h2 class="form-signin-heading nusblue">Login</h2>
-        <input type="text" name = "username-login" class="input-block-level" placeholder="Matric number">
-        <input type="password" name = "pass-login" class="input-block-level" placeholder="Password">
-     
+        <input type="text" name = "username-login" class="form-control" placeholder="Matric number">
+        <input type="password" name = "pass-login" class="form-control" placeholder="Password">
+        <br>
         <button class="btn btn-warning" type="submit">Login</button>
       </form>
 	</div>
-	<div class = "span4">
+	<div class = "col-md-4">
 	  <form class="form-signin" action="login.php" method="post">
         <h2 class="form-signin-heading nusblue">Register</h2>
-        <input type="text" name = "name-register" class="input-block-level" placeholder="Name">
-        <input type="text" name = "username-register" class="input-block-level" placeholder="Matric No">
-        <input type="password" name = "pass1-register" class="input-block-level" placeholder="Password">
-        <input type="password" name = "pass2-register" class="input-block-level" placeholder="Confirm Password">
+        <input type="text" name = "name-register" class="form-control" placeholder="Name">
+        <input type="text" name = "username-register" class="form-control" placeholder="Matric No">
+        <input type="password" name = "pass1-register" class="form-control" placeholder="Password">
+        <input type="password" name = "pass2-register" class="form-control" placeholder="Confirm Password"><br>
         <button class="btn btn-warning" type="submit">Sign Up</button>
       </form>
 	</div>

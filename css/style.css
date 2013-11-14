@@ -35,11 +35,12 @@ padding: 14px 24px;
 
 .border-right {
 	border-right: 1px solid #e4e4e4;
-	padding-right: 20px;
+	padding-right: 17px;
 }
 
 .nodec {
 	text-decoration: none;
+	margin-top: 10px;
 }
 
 .nusblue {
@@ -57,7 +58,7 @@ padding: 14px 24px;
 
 .map-holder {
 	border: 1px solid #3091c4;
-	height: 1000px;
+	height: 900px;
 	border-radius: 10px;
 	width: 90%;
 	margin: 0 auto;
@@ -67,3 +68,42 @@ padding: 14px 24px;
 	background-color: black;
 }
 
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: -1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}

@@ -1,109 +1,109 @@
 <h2>Add New Facility</h2>
 
 <?php
-$root = realpath($_SERVER["DOCUMENT_ROOT"]);
-include $root.'/cs2102/inc/db-conn.php';
-$conn = setup_db();
+	$root = realpath($_SERVER["DOCUMENT_ROOT"]);
+	include $root.'/cs2102/inc/db-conn.php';
+	$conn = setup_db();
 
-$query = "SELECT `reg_id`, name FROM `region`;";
-$result = mysql_query($query);
-$regions = array();
-while($rows = mysql_fetch_array($result)) {
-	$eachregion = array(
-					'id' => $rows[0],
-					'region' => $rows[1]
-					);
-	array_push($regions, $eachregion);
-}
+	$query = "SELECT `reg_id`, name FROM `region`;";
+	$result = mysql_query($query);
+	$regions = array();
+	while($rows = mysql_fetch_array($result)) {
+		$eachregion = array(
+						'id' => $rows[0],
+						'region' => $rows[1]
+						);
+		array_push($regions, $eachregion);
+	}
 
 
-$query = "SELECT max(fac_id) FROM facility;";
-$result = mysql_query($query);
-$rows = mysql_fetch_row($result);
-$fac_id = $rows[0]+1;
+	$query = "SELECT max(fac_id) FROM facility;";
+	$result = mysql_query($query);
+	$rows = mysql_fetch_row($result);
+	$fac_id = $rows[0]+1;
 
-$err_fac = $err_open = $err_close = $err_white = $err_audio = $err_proj = "";
-$fac = $open = $close = $capacity = $whiteboard = $proj = $audio = "";
-$flag = false;
-$success1 = $success2 = 0;
+	$err_fac = $err_open = $err_close = $err_white = $err_audio = $err_proj = "";
+	$fac = $open = $close = $capacity = $whiteboard = $proj = $audio = "";
+	$flag = false;
+	$success1 = $success2 = 0;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	if(isset($_POST["create"])){
-		if(empty($_POST["facility"])) {
-			$err_fac = "*required";
-			$flag = false;
-		} else {
-			$fac = $_POST["facility"];
-			$flag = true;
-		}
-		if(empty($_POST["opening"])) {
-			$err_open = "*required";
-			$flag = false;
-		} else {
-			$open = $_POST["opening"];
-			$flag = true;
-		}
-		if(empty($_POST["closing"])) {
-			$err_close = "*required";
-			$flag = false;
-		} else {
-			$close = $_POST["closing"];
-			$flag = true;
-		}
-		if(empty($_POST["capacity"])) {
-			$capacity = NULL;
-		} else {
-			$capacity = $_POST["capacity"];
-			$flag = true;
-		}
-		if(empty($_POST["whiteboard"])) {
-			$err_white = "*required";
-			$flag = false;
-		} else {
-			$whiteboard = decodeBoolean($_POST["whiteboard"]);
-			$flag = true;
-		}
-		if(empty($_POST["projector"])) {
-			$err_proj = "*required";
-			$flag = false;
-		} else {
-			$proj = decodeBoolean($_POST["projector"]);
-			$flag = true;
-		}
-		if(empty($_POST["audio"])) {
-			$err_audio = "*required";
-			$flag = false;
-		} else {
-			$audio = decodeBoolean($_POST["audio"]);
-			$flag = true;
-		}
-
-		if($flag) {
-			$reg_id = $_POST["region"];
-			if($capacity == NULL) {
-				$insertQuery1 = "INSERT INTO facility(fac_id, reg_id, open_time, close_time) 
-					VALUES(".$fac_id.",".$reg_id.", '".$open."', '".$close."');";
-				$success1 = mysql_query($insertQuery1);
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		if(isset($_POST["create"])){
+			if(empty($_POST["facility"])) {
+				$err_fac = "*required";
+				$flag = false;
 			} else {
-				$insertQuery1 = "INSERT INTO facility(fac_id, reg_id, open_time, close_time, capacity) 
-					VALUES(".$fac_id.",".$reg_id.", '".$open."', '".$close."',".$capacity.");";
-				$success1 = mysql_query($insertQuery1);
+				$fac = $_POST["facility"];
+				$flag = true;
 			}
-			$insertQuery2 = "INSERT INTO academic(fac_id, reg_id, whiteboard, audio_system, projector, type) 
-				VALUES(".$fac_id.",".$reg_id.", ".$whiteboard.", ".$audio.",".$proj.",'".$fac."');";
-			$success2 = mysql_query($insertQuery2);
+			if(empty($_POST["opening"])) {
+				$err_open = "*required";
+				$flag = false;
+			} else {
+				$open = $_POST["opening"];
+				$flag = true;
+			}
+			if(empty($_POST["closing"])) {
+				$err_close = "*required";
+				$flag = false;
+			} else {
+				$close = $_POST["closing"];
+				$flag = true;
+			}
+			if(empty($_POST["capacity"])) {
+				$capacity = NULL;
+			} else {
+				$capacity = $_POST["capacity"];
+				$flag = true;
+			}
+			if(empty($_POST["whiteboard"])) {
+				$err_white = "*required";
+				$flag = false;
+			} else {
+				$whiteboard = decodeBoolean($_POST["whiteboard"]);
+				$flag = true;
+			}
+			if(empty($_POST["projector"])) {
+				$err_proj = "*required";
+				$flag = false;
+			} else {
+				$proj = decodeBoolean($_POST["projector"]);
+				$flag = true;
+			}
+			if(empty($_POST["audio"])) {
+				$err_audio = "*required";
+				$flag = false;
+			} else {
+				$audio = decodeBoolean($_POST["audio"]);
+				$flag = true;
+			}
+
+			if($flag) {
+				$reg_id = $_POST["region"];
+				if($capacity == NULL) {
+					$insertQuery1 = "INSERT INTO facility(fac_id, reg_id, open_time, close_time) 
+						VALUES(".$fac_id.",".$reg_id.", '".$open."', '".$close."');";
+					$success1 = mysql_query($insertQuery1);
+				} else {
+					$insertQuery1 = "INSERT INTO facility(fac_id, reg_id, open_time, close_time, capacity) 
+						VALUES(".$fac_id.",".$reg_id.", '".$open."', '".$close."',".$capacity.");";
+					$success1 = mysql_query($insertQuery1);
+				}
+				$insertQuery2 = "INSERT INTO academic(fac_id, reg_id, whiteboard, audio_system, projector, type) 
+					VALUES(".$fac_id.",".$reg_id.", ".$whiteboard.", ".$audio.",".$proj.",'".$fac."');";
+				$success2 = mysql_query($insertQuery2);
+			}
 		}
 	}
-}
 
 
-function decodeBoolean($str) {
-	if($str == "yes") {
-		return 1;
-	} else {
-		return 0;
+	function decodeBoolean($str) {
+		if($str == "yes") {
+			return 1;
+		} else {
+			return 0;
+		}
 	}
-}
 
 ?>
 
