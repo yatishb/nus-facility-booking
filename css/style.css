@@ -47,6 +47,15 @@ padding: 14px 24px;
 	color: #4c7bc2;
 }
 
+.nusorange {
+	color: #e88809;
+}
+
+.heading-search {
+	font-size: 30px;
+	font-weight: bold;
+}
+
 .home-holder {
 	border: 1px solid #ff9200;
 	height: 300px;
@@ -54,6 +63,19 @@ padding: 14px 24px;
 	width: 90%;
 	margin: 0 auto;
 	background-image: url('/cs2102/img/feature.png');
+	padding: 30px;
+	padding-left: 140px;
+}
+
+.search-holder {
+	border: 1px solid #ff9200;
+	height: 100px;
+	border-radius: 4px;
+	width: 90%;
+	margin: 0 auto;
+	background-image: url('/cs2102/img/feature.png');
+	padding: 30px;
+	padding-left: 70px;
 }
 
 .map-holder {
@@ -106,4 +128,22 @@ padding: 14px 24px;
   border-top-right-radius: 0;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.dateform-left {
+  width:48%;
+  float: left;
+}
+
+.dateform-right {
+  width:48%;
+  float: right;
+}
+
+.table-heading {
+	font-weight: bold;
+}
+
+.middle {
+	margin-left:35%;
 }
