@@ -28,7 +28,6 @@
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		if(isset($_POST['delete'])){
 			$id = $_POST['region'];
-			$selected = $id;
 			if($id == "base"){
 				$flag = "*required";
 			}
@@ -103,12 +102,24 @@
 		}
 	}
 
+	if(isset($_POST["back"])){
+		close_db($conn);
+		header('Location: /cs2102/inc/admin-panel.php');
+	}
+
 
 	close_db($conn);
+	if($id != "base") {
+		?>
+		<form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
+			<button type="submit" name="confirm">Confirm</button>
+			<input type="hidden" name="id2" value=<?php echo $id ?> />
+		</form>
+		<?php
+	}
 ?>
 
 <form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
-	<button type="submit" name="confirm">Confirm</button>
-	<input type="hidden" name="id2" value=<?php echo $id ?> />
+	<button type="submit" name="back">BACK</button>
 </form>
 
