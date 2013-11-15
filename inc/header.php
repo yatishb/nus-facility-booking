@@ -10,6 +10,7 @@
 
     <!--Style -->
     <link href="/cs2102/css/bootstrap.css" rel="stylesheet">
+    <link href="/cs2102/css/datepicker.min.css" rel="stylesheet">
     <link href="/cs2102/css/style.css" rel="stylesheet">
 
     <!--Favicon -->
@@ -19,6 +20,7 @@
   <body>
   	  <script src="https://code.jquery.com/jquery.js"></script>
 	  <script src="/cs2102/js/bootstrap.js"></script>
+	  <script src="/cs2102/js/datepicker.min.js"></script>
       <div class="container-narrow">
 
       <div class="masthead">
