@@ -141,8 +141,9 @@
 							<button type="submit" name="facility" value="<?php echo $eachFac['id']; ?>">View Details</button>
 							<input type="hidden" name="region" value=<?php echo $idRegion ?> />
 							</form></td>
-						<td> <form>
+						<td> <form action="modify-facility.php" method="POST">
 							<button type="submit" name="editFac" value="<?php echo $eachFac['id']; ?>">Edit</button>
+							<input type="hidden" name="editReg" value=<?php echo $idRegion ?> />
 							</form></td>
 						<td> <form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST"> 
 							<button type="submit" name="delFac" value="<?php echo $eachFac['id']; ?>">Delete</button>
