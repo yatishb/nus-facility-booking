@@ -3,6 +3,7 @@
 <?php
 	$root = realpath($_SERVER["DOCUMENT_ROOT"]);
 	include $root.'/cs2102/inc/db-conn.php';
+	include $root.'/cs2102/inc/admin-functions.php';
 	$conn = setup_db();
 
 	$query = "SELECT count(*) FROM region;";
@@ -10,16 +11,7 @@
 	$countRegion = mysql_fetch_row($result);
 	$countRegion = $countRegion[0];
 
-	$query = "SELECT R.reg_id, R.name FROM region R;";
-	$result = mysql_query($query);
-	$regions = array();
-	while($rows = mysql_fetch_array($result)) {
-		$eachregion = array(
-						'id' => $rows[0],
-						'region' => $rows[1]
-						);
-		array_push($regions, $eachregion);
-	}
+	$regions = getAllRegions();
 
 	$flag = "";	
 	$idRegion = "base";
@@ -37,12 +29,15 @@
 		if(isset($_POST['idFac'])){
 			$idFac = $_POST['idFac'];
 			$idRegion = $_POST['idRegion'];
-			$query = "SELECT name FROM facility WHERE fac_id =".$idFac." AND reg_id =".$idRegion.";";
+			$query = "SELECT name 
+					  FROM facility 
+					  WHERE fac_id =".$idFac." AND reg_id =".$idRegion.";";
 			$result = mysql_query($query);
 			$name = mysql_fetch_row($result);
 			$name = $name[0];
 
-			$query = "DELETE FROM facility WHERE fac_id = ".intval($idFac)." AND reg_id = ".intval($idRegion).";";
+			$query = "DELETE FROM facility 
+					  WHERE fac_id = ".intval($idFac)." AND reg_id = ".intval($idRegion).";";
 			$success = mysql_query($query);
 		}
 	}
@@ -70,28 +65,14 @@
 				$regName = $eachregion['region'];
 		}
 
-		$query = "SELECT count(*) FROM facility f WHERE f.reg_id = ".$idRegion.";";
-		$result = mysql_query($query);
-		$countFac = mysql_fetch_row($result);
-		$countFac = $countFac[0];
-
+		$countFac = getNumberFacilitiesInRegion($idRegion);
 		//If there are any facilities in the selected region, display them in a table format to delete
 		if($countFac == 0) {
 			if($name == NULL)
 				echo "Sorry there is no facility in the region ".$regName;
 		} else {
 			//Display all the facilities present in the region and allow deletion
-			$query = "SELECT f.fac_id, f.name FROM facility f WHERE f.reg_id = ".$idRegion.";";
-			$result = mysql_query($query);
-			$facilities = array();
-			while($rows = mysql_fetch_array($result)) {
-				$eachFac = array(
-								'id' => $rows[0],
-								'facility' => $rows[1]
-								);
-				array_push($facilities, $eachFac);
-			}
-
+			$facilities = getFacilityInRegion($idRegion);
 			?>
 
 			<!-- Display table -->

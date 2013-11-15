@@ -3,18 +3,10 @@
 <?php
 	$root = realpath($_SERVER["DOCUMENT_ROOT"]);
 	include $root.'/cs2102/inc/db-conn.php';
+	include $root.'/cs2102/inc/admin-functions.php';
 	$conn = setup_db();
 
-	$query = "SELECT `reg_id`, name FROM `region`;";
-	$result = mysql_query($query);
-	$regions = array();
-	while($rows = mysql_fetch_array($result)) {
-		$eachregion = array(
-						'id' => $rows[0],
-						'region' => $rows[1]
-						);
-		array_push($regions, $eachregion);
-	}
+	$regions = getAllRegions();
 
 
 	$query = "SELECT max(fac_id) FROM facility;";
@@ -74,12 +66,12 @@
 			if($flag) {
 				$reg_id = $_POST["region"];
 				if($capacity == NULL) {
-					$insertQuery1 = "INSERT INTO facility(fac_id, reg_id, open_time, close_time, name) 
-						VALUES(".$fac_id.",".$reg_id.", '".$open."', '".$close."','".$fac."'');";
+					$insertQuery1 = "INSERT INTO facility(fac_id, reg_id, open_time, close_time, name, type) 
+						VALUES(".$fac_id.",".$reg_id.", '".$open."', '".$close."','".$fac."','sports');";
 					$success1 = mysql_query($insertQuery1);
 				} else {
-					$insertQuery1 = "INSERT INTO facility(fac_id, reg_id, open_time, close_time, capacity, name) 
-						VALUES(".$fac_id.",".$reg_id.", '".$open."', '".$close."',".$capacity.",'".$fac."');";
+					$insertQuery1 = "INSERT INTO facility(fac_id, reg_id, open_time, close_time, capacity, name, type) 
+						VALUES(".$fac_id.",".$reg_id.", '".$open."', '".$close."',".$capacity.",'".$fac."','sports');";
 					$success1 = mysql_query($insertQuery1);
 				}
 				$insertQuery2 = "INSERT INTO sports(fac_id, reg_id, scoreboard, spectator_area) 
