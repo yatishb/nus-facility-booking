@@ -15,12 +15,11 @@
 
     <!--Favicon -->
     <link rel="shortcut icon" href="">
-    
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script src="/cs2102/js/imagemapster.js"></script>
   </head>
 
   <body>
+  	  <script src="https://code.jquery.com/jquery.js"></script>
 	  <script src="/cs2102/js/bootstrap.js"></script>
       <div class="container-narrow">
 
