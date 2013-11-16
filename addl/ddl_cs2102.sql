@@ -8,7 +8,7 @@ CREATE TABLE user (
 user_id CHAR(8) PRIMARY KEY,
 name VARCHAR(32) NOT NULL,
 password CHAR(32) NOT NULL,
-is_admin BOOLEAN
+is_admin BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE facility (
