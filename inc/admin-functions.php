@@ -1,7 +1,7 @@
 <?php
 
 	function getAllRegions() {
-		$query = "SELECT R.reg_id, R.name, R.location FROM region R;";
+		$query = "SELECT R.reg_id, R.name, R.location FROM region R ORDER BY R.name;";
 		$result = mysql_query($query);
 		$regions = array();
 		while($rows = mysql_fetch_array($result)) {
@@ -18,7 +18,8 @@
 	function getFacilityInRegion($idRegion) {
 		$query = "SELECT f.fac_id, f.name 
 				  FROM facility f 
-				  WHERE f.reg_id = ".$idRegion.";";
+				  WHERE f.reg_id = ".$idRegion." 
+				  ORDER BY f.name;";
 		$result = mysql_query($query);
 		$facilities = array();
 		while($rows = mysql_fetch_array($result)) {
@@ -36,7 +37,8 @@
 				  FROM facility f
 				  INNER JOIN academic a
 				  ON a.fac_id = f.fac_id
-				  WHERE f.reg_id = ".$idRegion.";";
+				  WHERE f.reg_id = ".$idRegion." 
+				  ORDER BY f.name;";
 		$result = mysql_query($query);
 
 		while($rows = mysql_fetch_array($result)) {
@@ -63,7 +65,8 @@
 				  FROM facility f
 				  INNER JOIN sports s
 				  ON s.fac_id = f.fac_id
-				  WHERE f.reg_id = ".$idRegion.";";
+				  WHERE f.reg_id = ".$idRegion." 
+				  ORDER BY f.name;";
 		$result = mysql_query($query);
 
 		while($rows = mysql_fetch_array($result)) {
@@ -144,6 +147,30 @@
 		}
 		
 		return $facility;
+	}
+
+	function getAllBookingsFacility($idFac, $date) {
+		$startdate = $date. " "."00:00";
+		$enddate = $date. " "."23:59";
+		$booking = array();
+		$query = "SELECT * FROM booking b 
+				  WHERE b.fac_id = ".$idFac." 
+				  AND b.start >= '".$startdate."' 
+				  AND b.end <= '".$enddate."' 
+				  ORDER BY b.start;";
+		$result = mysql_query($query);
+		while($row = mysql_fetch_array($result)){
+			$eachBooking = array(
+								'book_id' => $row[0],
+								'fac_id' => $idFac,
+								'reg_id' => $row[2],
+								'user_id' => $row[3],
+								'start' => $row[4],
+								'end' => $row[5]
+								);
+			array_push($booking, $eachBooking);
+		}
+		return $booking;
 	}
 
 ?>

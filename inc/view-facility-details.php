@@ -103,11 +103,63 @@ $("#facility").load("getter-view-facility-details.php?choice=" +  temp);
 						  	echo "No"; ?></td>
 			</tr>
 		</table>
-		<?php
-	}
-?>
+
+<!--Display the calendar for the day -->
+		<?php 
+		$date = date('Y-m-d');
+		if(isset($_POST['previous'])) {
+			$date = $_POST['date'];
+			$date = date('Y-m-d', strtotime($date .' -1 day'));
+		} else if(isset($_POST['next'])) {
+			$date = $_POST['date'];
+			$date = date('Y-m-d', strtotime($date .' +1 day'));
+		}
+		$bookings = getAllBookingsFacility($idFac, $date);
+		?>
+		</br></br>
+		<table>
+			<tr>
+				<th><form action = "<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
+					<button type="submit" name="previous">Previous Day</button>
+					<input type="hidden" name="date" value=<?php echo $date;?> />
+					<input type="hidden" name="facility" value=<?php echo $idFac;?> />
+					<input type="hidden" name="region" value=<?php echo $idRegion;?> />
+					</form></th>
+				<th><?php
+						if($date == date('Y-m-d')) {
+							echo "Today";
+						} else {
+							echo $date;
+						} ?></th>
+				<th><form action = "<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
+					<button type="submit" name="next">Next Day</button>
+					<input type="hidden" name="date" value=<?php echo $date;?> />
+					<input type="hidden" name="facility" value=<?php echo $idFac;?> />
+					<input type="hidden" name="region" value=<?php echo $idRegion;?> />
+					</form></th>
+			</tr>
+			<tr>
+				<td><b>Start Time</b></td>
+				<td><b>End Time</b></td>
+				<td><b>User</b></td>
+			</tr>
+			<?php
+				foreach($bookings as $eachbooking) {
+					?>
+					<tr>
+						<td><?php echo str_replace($date,"", $eachbooking['start']); ?></td>
+						<td><?php echo str_replace($date,"", $eachbooking['end']); ?></td>
+						<td><?php echo $eachbooking['user_id']; ?></td>
+					</tr>
+					<?php
+				}
+			?>
+		</table>
+
 
 <?php
+	} //end of if(isset['facility'])	
+
 	close_db($conn);
 
 	if(isset($_POST["back"])){
