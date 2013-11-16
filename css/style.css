@@ -147,3 +147,13 @@ padding: 14px 24px;
 .middle {
 	margin-left:35%;
 }
+
+#imagehead {
+	color: #e89221;
+	z-index: 2;
+	text-align: right;
+	position: absolute;
+	top: 600px;
+	right: 200px;
+}
+
