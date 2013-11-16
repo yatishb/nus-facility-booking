@@ -36,8 +36,9 @@ List of all the Regions :
 				<input type='hidden' name='showAll' value='Submit'/>
 				<input type='hidden' name='from' value='view-all-regions.php'/>
 				</form></td>
-			<td> <form> 
-				<button type="submit" name="editFac" value="<?php echo $eachRegion['id']; ?>">Edit</button>
+			<td> <form method='POST' action='modify-region.php'> 
+				<button type="submit" name="editReg" value="<?php echo $eachRegion['id']; ?>">Edit</button>
+				<input type='hidden' name='regionSelect' value='Submit'/>
 				</form></td>
 			<td> <form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST"> 
 				<button type="submit" name="delRegion" value="<?php echo $eachRegion['id']; ?>">Delete Region</button>
