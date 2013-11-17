@@ -1,5 +1,5 @@
 <?php include("header.php"); ?>
-<h2>Add New Facility</h2>
+<h2 class="nusblue">Add New Facility</h2></br>
 
 <?php
 	if($_SESSION['admin']) {
@@ -138,7 +138,7 @@
         <div class="form-group">
         <label for="facility" class="col-sm-2 control-label">New Facility : </label>
         <div class="col-sm-6">
-        <input class="form-control" id="facility"  type="text" name="facility" placeholder="new facility name" />
+        <input class="form-control" id="facility" type="text" name="facility" placeholder="new facility name" />
                 <?php echo $err_fac; ?>
         </div>
         </div>

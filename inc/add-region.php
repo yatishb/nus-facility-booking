@@ -1,73 +1,93 @@
 <?php include("header.php"); ?>
-<h2>Add New Region</h2>
+<h2 class="nusblue">Add New Region</h2></br>
 
 <?php
-// define variables and set to empty values
-	$newRegion = $location = "";
-	$regionErr = $locationErr = "";
-	$regionFlag = $locationFlag = FALSE;
-	$sucess = 0;
+	if($_SESSION['admin']) {
+	// define variables and set to empty values
+		$newRegion = $location = "";
+		$regionErr = $locationErr = "";
+		$regionFlag = $locationFlag = FALSE;
+		$sucess = 0;
 
-	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		if(isset($_POST["create"])) {
-			if (empty($_POST["newregion"])) {
-				$regionErr = "Region name is required";
-				$regionFlag = $locationFlag = FALSE;
-			} else {
-				$newRegion= $_POST["newregion"];
-				$regionErr = "";
-				$regionFlag = TRUE;
-			}
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			if(isset($_POST["create"])) {
+				if (empty($_POST["newregion"])) {
+					$regionErr = "Region name is required";
+					$regionFlag = $locationFlag = FALSE;
+				} else {
+					$newRegion= $_POST["newregion"];
+					$regionErr = "";
+					$regionFlag = TRUE;
+				}
 
-			if (empty($_POST["location"])) {
-				$locationErr = "Region location is required";
-				$regionFlag = $locationFlag = FALSE;
-			} else {
-				$location = $_POST["location"];
-				$locationErr = "";
-				$locationFlag = TRUE;
-			}
+				if (empty($_POST["location"])) {
+					$locationErr = "Region location is required";
+					$regionFlag = $locationFlag = FALSE;
+				} else {
+					$location = $_POST["location"];
+					$locationErr = "";
+					$locationFlag = TRUE;
+				}
 
-		
-			if($regionFlag && $locationFlag) {
-				$conn = setup_db();
+			
+				if($regionFlag && $locationFlag) {
+					$conn = setup_db();
 
-				$query = "SELECT max(reg_id) FROM region;";
-				$result = mysql_query($query);
-				$rows = mysql_fetch_row($result);
+					$query = "SELECT max(reg_id) FROM region;";
+					$result = mysql_query($query);
+					$rows = mysql_fetch_row($result);
 
-				$reg_id = $rows[0]+1;
+					$reg_id = $rows[0]+1;
 
-				$insertQuery = "INSERT INTO region(reg_id, name, location) 
-					VALUES(".$reg_id.", '".mysql_real_escape_string($newRegion)."', '".mysql_real_escape_string($location)."');";
-				$sucess = mysql_query($insertQuery);
+					$insertQuery = "INSERT INTO region(reg_id, name, location) 
+						VALUES(".$reg_id.", '".mysql_real_escape_string($newRegion)."', '".mysql_real_escape_string($location)."');";
+					$sucess = mysql_query($insertQuery);
 
-				close_db($conn);
+					close_db($conn);
+				}
 			}
 		}
-	}
 
-	if($sucess) {
+		if($sucess) {
+			?>
+			<div class="alert alert-success alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<?php echo "New Region ".$newRegion." has been added"; ?>
+			</div>
+			<?php
+		}
+
 		?>
-		<div class="alert alert-success alert-dismissable">
-			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			<?php echo "New Region ".$newRegion." has been added"; ?>
-		</div>
-		<?php
-	}
-
-?>
-
-
 
 
 <form class="form-horizontal" role="form" action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST"> 
-	New Region Name : <input type="text" style="width:200px" name="newregion" placeholder="new region" />
-		<?php echo $regionErr; ?></br>
-	Location : <input type="text" style="width:200px" name="location" placeholder="location of the new region" />
-		<?php echo $locationErr; ?></br></br>
-	<button type="submit" name="create">Create New Region</button>
+	<div class="form-group">
+		<label for="regionname" class="col-sm-2 control-label">New Region Name : </label>
+		<div class="col-sm-6">
+		<input class="form-control" type="text" style="width:200px" id="regionname" name="newregion" placeholder="new region" />
+			<?php echo $regionErr; ?>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="location" class="col-sm-2 control-label">Location : </label>
+		<div class="col-sm-6">
+		<input class="form-control" type="text" style="width:200px" id="location" name="location" placeholder="location of the new region" />
+			<?php echo $locationErr; ?>
+		</div>
+	</div></br>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-6">
+		<button type="submit" class="btn btn-primary btn-lg" name="create">Create New Facility</button>
+		</div>
+	</div>
 </form>
+
+
+	<?php
+	} else {
+		header("Location: /cs2102/inc/login.php");
+	}
+?>
 
 
 <a href='/cs2102/inc/admin-panel.php'>
