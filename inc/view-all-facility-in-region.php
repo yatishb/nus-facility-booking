@@ -159,7 +159,9 @@
 
 		close_db($conn); 
 	} else {
-		header("Location: /cs2102/inc/login.php");
+		?>
+		<script>window.location.href = "/cs2102/inc/login.php"; </script>
+		<?php
 	}
 ?>
 
