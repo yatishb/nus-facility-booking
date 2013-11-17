@@ -51,7 +51,7 @@
     </div>
     <div id="collapseThree" class="panel-collapse collapse">
       <div class="panel-body">
-        	Yatish has not ADDED THIS !$!#$%!#
+        	<a href="delete-bookings.php" class="btn btn-danger">Remove Booking</a>
       </div>
     </div>
   </div>
