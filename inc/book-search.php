@@ -104,7 +104,7 @@ if (isset($_POST['submit'])) :
 							 and b.end <= CONCAT('".$bookdate."', ' ','". $endtime."')";
 				}
 
-			$query.=" UNION SELECT f.fac_id, 0 FROM facility f WHERE f.fac_id NOT IN (SELECT b.fac_id FROM booking b ";
+			$query.=" GROUP BY b.fac_id UNION SELECT f.fac_id, 0 FROM facility f WHERE f.fac_id NOT IN (SELECT b.fac_id FROM booking b ";
 			if($starttime=="ANY" && $endtime=="ANY" && $bookdate=="ANY")
 				{
 					$bookdate = date('Y-m-d');
