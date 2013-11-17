@@ -1,23 +1,23 @@
-<h2>View All Regions</h2>
+<?php include("header.php"); ?>
+<h2 class="nusblue">View All Regions</h2></br>
 
 <?php
-	$root = realpath($_SERVER["DOCUMENT_ROOT"]);
-	include $root.'/cs2102/inc/db-conn.php';
-	include $root.'/cs2102/inc/admin-functions.php';
-	$conn = setup_db();
+	if($_SESSION['admin']) {
+		include ('admin-functions.php');
+		$conn = setup_db();
 
-	if ($_SERVER["REQUEST_METHOD"] == "POST"){
-		if(isset($_POST['delRegion'])){
-			$id = $_POST['delRegion'];
-			$query = "DELETE FROM region 
-					  WHERE reg_id = ".intval($id).";";
-			$result = mysql_query($query);
+		if ($_SERVER["REQUEST_METHOD"] == "POST"){
+			if(isset($_POST['delRegion'])){
+				$id = $_POST['delRegion'];
+				$query = "DELETE FROM region 
+						  WHERE reg_id = ".intval($id).";";
+				$result = mysql_query($query);
+			}
 		}
-	}
-	
-	$regions = getAllRegions();
+		
+		$regions = getAllRegions();
 
-?>
+	?>
 
 List of all the Regions :
 </br>
@@ -50,14 +50,14 @@ List of all the Regions :
 
 
 <?php
-	close_db($conn);
-
-	if(isset($_POST["back"])){
-		header('Location: /cs2102/inc/admin-panel.php');
+		close_db($conn);
+	} else {
+		header("Location: /cs2102/inc/login.php");
 	}
 ?>
 
-<form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
-	<button type="submit" name="back">BACK</button>
-</form>
-
+</br>
+<a href='/cs2102/inc/admin-panel.php'>
+	<button style="margin-left:165px;" type="submit" class="btn btn-default btn-sm" name="back">Back To Admin Panel</button>
+</a>
+<?php include("footer.php"); ?>
