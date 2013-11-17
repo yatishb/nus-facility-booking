@@ -23,12 +23,14 @@ if(isset($_POST['username-login']))
 			{
 				$_SESSION['username'] = $row['user_id'];
 				$_SESSION['name'] = $row['name'];
+				$_SESSION['admin'] = $row['is_admin'];
 			}
 			else
 			{
 				echo("<p>Password doesn't match. Try again! </p>");
 				unset($_SESSION['username']);
 				unset($_SESSION['name']);
+				unset($_SESSION['admin']);
 			}
 		}
 	}
