@@ -41,7 +41,7 @@
 			      ?>
 			      <li><a href="/cs2102/inc/admin-panel.php">Admin Panel</a></li>
 			      <?php } ?>
-			      <li><a href="#">History</a></li>
+			      <li><a href="/cs2102/inc/user-bookings.php">Bookings</a></li>
 			      <li><a href="#">Profile</a></li>
 			      <li class="divider"></li>
 			      <li><a href="/cs2102/inc/logout.php">Logout</a></li>
