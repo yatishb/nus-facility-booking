@@ -131,7 +131,7 @@ if(isset($_POST['username-register']))
 <?php if (isset($_SESSION['username']) && !isset($_POST['bookstart'])) { ?>
 <script>window.location.href = "/cs2102/index.php"; </script>
 <?php } else if (isset($_SESSION['username']) && isset($_POST['bookstart'])) { ?>
-<script>window.location.href = "/cs2102/inc/book-facility.php?bookstart=<?php echo $bookstart; ?>&bookend=<?php echo $bookend; ?>&bookfac=<?php echo $bookfac; ?>&bookreg=<?php echo $bookreg; ?>&bookdate=<?php echo $bookdate; ?>"; </script>
+<script>window.location.href = "/cs2102/inc/book-facility.php?bookstart=<?php echo $bookstart; ?>&bookend=<?php echo $bookend; ?>&bookfac=<?php echo $bookfac; ?>&bookreg=<?php echo $bookreg; ?>&bookdate=<?php echo $bookdate; ?>&bookuser=<?php echo $_SESSION['username']; ?>"; </script>
 <?php } ?>
 
 <?php include("footer.php"); ?>
