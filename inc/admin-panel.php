@@ -1,45 +1,71 @@
-<div><h3>Welcome Admin!</h3></div>
+<?php include("header.php"); ?>
+<h3 class="nusblue">Welcome Admin!</h3><br>
 
-<form action="add-region.php" method="POST">
-	<button name="addRegion" type="submit">Add New Region</button>
-</form>
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          Region
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+      		<a href="add-region.php" class="btn btn-success">Add New Region</a>
+      		<a href="view-all-regions.php" class="btn btn-primary">View All Regions</a>
+      		<a href="modify-region.php" class="btn btn-warning">Modify Regions</a>
+      		<a href="remove-region.php" class="btn btn-danger">Remove Region</a>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Facility
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+      		<a href="add-academicroom.php" class="btn btn-success">Add New Academic Room</a>
+      		<a href="add-sportsfac.php" class="btn btn-success">Add New Sports Facility</a>
+      		<a href="view-all-facility-in-region.php" class="btn btn-primary">View All Facilities</a>
+      		<a href="view-facility-details.php" class="btn btn-primary">View Facility Details</a>
+      		<a href="modify-facility.php" class="btn btn-warning">Modify Facility</a>
+      		<a href="remove-facility.php" class="btn btn-danger">Remove Facility</a>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          Booking
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+        	Yatish has not ADDED THIS !$!#$%!#
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+          User
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse">
+      <div class="panel-body">
+      		<a href="add-admin.php" class="btn btn-success">Add New Admin</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-<form action="add-academicroom.php" method="POST">
-	<button name="addAcademic" type="submit">Add New Academic Room</button>
-</form>
-
-<form action="add-sportsfac.php" method="POST">
-	<button name="addSports" type="submit">Add New Sports Facility</button>
-</form>
-
-<form action="modify-region.php" method="POST">
-	<button name="modify-region" type="submit">Modify Region</button>
-</form>
-
-<form action="modify-facility.php" method="POST">
-	<button name="modify-facility" type="submit">Modify Facility</button>
-</form>
-
-<form action="view-all-regions.php" method="POST">
-	<button name="view-regions" type="submit">View All Regions</button>
-</form>
-
-<form action="view-all-facility-in-region.php" method="POST">
-	<button name="view-all-fac" type="submit">View All Facilities</button>
-</form>
-
-<form action="view-facility-details.php" method="POST">
-	<button name="view-fac" type="submit">View Facility Details</button>
-</form>
-
-<form action="remove-region.php" method="POST">
-	<button name="removeRegion" type="submit">Remove Region</button>
-</form>
-
-<form action="remove-facility.php" method="POST">
-	<button name="removeFac" type="submit">Remove Facility</button>
-</form>
-
-<form action="add-admin.php" method="POST">
-	<button name="newAdmin" type="submit">Add New Admin</button>
-</form>
+<?php include("footer.php"); ?>
