@@ -19,33 +19,35 @@
 
 	?>
 
-List of all the Regions :
-</br>
-<table>
+<table class="table">
+<thead>
 <tr>
 	<th>Name</th>
 	<th>Location</th>
 </tr>
+</thead>
+<tbody>
 <?php
 	foreach($regions as $eachRegion) {
 		?><tr>
 			<td> <?php echo $eachRegion['region']; ?> </td>
 			<td> <?php echo $eachRegion['location']; ?> </td>
 			<td> <form method='POST' action='view-all-facility-in-region.php'>
-				<button type="submit" name="region" value="<?php echo $eachRegion['id']; ?>">View Facilities</button>
+				<button type="submit" class="btn btn-primary" name="region" value="<?php echo $eachRegion['id']; ?>">View Facilities</button>
 				<input type='hidden' name='showAll' value='Submit'/>
 				<input type='hidden' name='from' value='view-all-regions.php'/>
 				</form></td>
 			<td> <form method='POST' action='modify-region.php'> 
-				<button type="submit" name="editReg" value="<?php echo $eachRegion['id']; ?>">Edit</button>
+				<button type="submit" class="btn btn-warning" name="editReg" value="<?php echo $eachRegion['id']; ?>">Edit</button>
 				<input type='hidden' name='regionSelect' value='Submit'/>
 				</form></td>
 			<td> <form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST"> 
-				<button type="submit" name="delRegion" value="<?php echo $eachRegion['id']; ?>">Delete Region</button>
+				<button type="submit" class="btn btn-danger" name="delRegion" value="<?php echo $eachRegion['id']; ?>">Delete Region</button>
 				</form></td>
 		</tr><?php	
 	}
-?>	
+?>
+</tbody>	
 </table>
 
 
@@ -60,6 +62,6 @@ List of all the Regions :
 
 </br>
 <a href='/cs2102/inc/admin-panel.php'>
-	<button style="margin-left:165px;" type="submit" class="btn btn-default btn-xs" name="back">Back To Admin Panel</button>
+	<button type="submit" class="btn btn-warning btn-xs" name="back">Back To Admin Panel</button>
 </a>
 <?php include("footer.php"); ?>

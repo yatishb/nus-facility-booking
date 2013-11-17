@@ -6,11 +6,10 @@
 	<title>Profile</title>
 	<?php
 			$conn = setup_db();
-			//if(isset($_SESSION['user']))
-			//{
-				//$user = $_SESSION['user'];
-			//}
-			$user = "A0091565";
+			if(isset($_SESSION['username']))
+			{
+				$user = $_SESSION['username'];
+			}
 			$view = $user."_bookings";
 			$query = "DROP VIEW IF EXISTS $view;";
 			$result = mysql_query($query);

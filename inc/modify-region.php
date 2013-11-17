@@ -59,9 +59,10 @@
 ?>
 
 
-<form method="POST" action="<?php $_SERVER["PHP_SELF"]; ?>">
-	<label for="editReg">Select Region:</label>
-	<select id="editReg" name="editReg">
+<form class="form-inline" role="form" method="POST" action="<?php $_SERVER["PHP_SELF"]; ?>">
+	<div class="form-group">
+	<label class="sr-only" for="editReg">Select Region:</label>
+	<select class="form-control" style="width:200px;" id="editReg" name="editReg">
 		<option select value="base">Please Select</option>
 	<?php
 		foreach ($regions as $row) {
@@ -69,7 +70,8 @@
 		}
 	?>
 	</select>
-<button type = "submit" name="regionSelect">Edit Region</button>
+	</div>
+	<button class="btn btn-primary" type = "submit" name="regionSelect">Edit Region</button>
 </form>
 
 <?php
@@ -90,13 +92,26 @@
 									'location' => $row[1]
 									);
 
-					?>
-					</br></br>Modify the following fields to change the features present in the facility:</br>
-					<form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
-						Region Name <input type = "text" name = "newName" value = "<?php echo $region['name']; ?>" /></br>
-						Region Location <input type = "text" name = "newLocation" value = "<?php echo $region['location']; ?>" /></br>
+					?><br><br>
+					<form class="form-horizontal" role="form" action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
+						<div class="form-group">
+						<label for="regionname" class="col-sm-2 control-label">Region Name</label>
+						<div class="col-sm-6">
+						<input class="form-control" style="width:200px" id="regionname" type = "text" name = "newName" value = "<?php echo $region['name']; ?>" />
+						</div>
+						</div>
+						<div class="form-group">
+						<label for="regionloc" class="col-sm-2 control-label">Region Location</label> 
+						<div class="col-sm-6">
+						<input class="form-control" style="width:200px" id="regionloc" type = "text" name = "newLocation" value = "<?php echo $region['location']; ?>" />
+						</div>
+						</div>
 						<input type = "hidden" name = "id" value = "<?php echo $region['id']; ?>" />
-						<button type = "submit" name = "modify">Modify Region</button>
+						<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-6">
+						<button class="btn btn-lg btn-danger" type = "submit" name = "modify">Modify Region</button>
+						</div>
+						</div>
 					</form>
 					<?php
 				}
@@ -113,6 +128,6 @@
 
 </br>
 <a href='/cs2102/inc/admin-panel.php'>
-	<button style="margin-left:165px;" type="submit" class="btn btn-default btn-xs" name="back">Back To Admin Panel</button>
+	<button type="submit" class="btn btn-warning btn-xs" name="back">Back To Admin Panel</button>
 </a>
 <?php include("footer.php"); ?>

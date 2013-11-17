@@ -64,19 +64,21 @@
 ?>
 
 
-<form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST"> 
-	<label> Select Region to be deleted : </label>
-	<select name = "region" >
+<form class="form-inline" role="form" action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
+	<div class="form-group"> 
+	<label class="sr-only" for="rem-region"> Select Region to be deleted : </label>
+	<select class="form-control" style="width:200px;" id="rem-region"  name = "region" >
 		<option select value="base">Please Select</option>
 		<?php
 			foreach($regions as $eachregion) {
 				echo "<option value = ".$eachregion['id'].">".$eachregion['region']."</option>";
 			}
 		?>
-	</select><?php echo $flag; ?></br>
-	<button type="submit" name="delete">Delete</button>
+	</select><?php echo $flag; ?>
+	</div>
+	<button class="btn btn-primary" type="submit" name="delete">Delete</button>
 </form>
-
+<br><br>
 
 <?php
 		if($id != "base"){
@@ -84,14 +86,14 @@
 			if($countFac > 0) {
 				$facility = getFacilityInRegion($id);
 
-				echo "The following facilities will also be removed upon removing the region ".$name." :";
+				echo "<h5 class='warningred'>The following facilities will also be removed upon removing the region ".$name." </h5>";
 				echo "<ul>";
 				foreach ($facility as $eachfac) {
-					echo "<li>".$eachfac['facility']."</br>";
+					echo "<li><span class='label label-default'>".$eachfac['facility']."</span></br>";
 				}
 				echo "</ul></br>";
 			} else {
-				echo "There are no other facilities in this region ".$name;
+				echo "<h4>There are no other facilities in this region ".$name."</h4>";
 			}
 		}
 
@@ -99,9 +101,9 @@
 		if($id != "base") {
 			?>
 			<form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
-				<button type="submit" name="confirm">Confirm</button>
+				<button type="submit" class="btn btn-danger btn-lg" name="confirm">Confirm</button>
 				<input type="hidden" name="id2" value=<?php echo $id ?> />
-			</form>
+			</form><br>
 			<?php
 		}
 	} else {
@@ -113,6 +115,6 @@
 
 </br>
 <a href='/cs2102/inc/admin-panel.php'>
-	<button style="margin-left:165px;" type="submit" class="btn btn-default btn-xs" name="back">Back To Admin Panel</button>
+	<button type="submit" class="btn btn-warning btn-xs" name="back">Back To Admin Panel</button>
 </a>
 <?php include("footer.php"); ?>

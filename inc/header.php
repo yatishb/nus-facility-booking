@@ -20,6 +20,9 @@
   <body>
   	  <script src="https://code.jquery.com/jquery.js"></script>
 	  <script src="/cs2102/js/bootstrap.js"></script>
+	  <?php
+	  	date_default_timezone_set('Singapore');
+	  ?>
       <div class="container-narrow">
 
       <div class="masthead">

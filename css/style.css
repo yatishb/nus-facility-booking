@@ -160,3 +160,7 @@ padding: 14px 24px;
 .shortform {
 	width: 100px;
 }
+
+.warningred {
+	color: #ff0000;
+}
