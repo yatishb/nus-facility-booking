@@ -13,7 +13,7 @@
         </a>
       </h4>
     </div>
-    <div id="collapseOne" class="panel-collapse collapse in">
+    <div id="collapseOne" class="panel-collapse collapse">
       <div class="panel-body">
       		<a href="add-region.php" class="btn btn-success">Add New Region</a><br><br>
       		<a href="view-all-regions.php" class="btn btn-primary">View All Regions</a><br><br>
@@ -51,6 +51,7 @@
     </div>
     <div id="collapseThree" class="panel-collapse collapse">
       <div class="panel-body">
+          <a href="book-search.php" class="btn btn-primary">Block Booking</a></br></br>
         	<a href="delete-bookings.php" class="btn btn-danger">Remove Booking</a>
       </div>
     </div>

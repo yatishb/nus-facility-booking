@@ -10,19 +10,17 @@
 		$reg = $_GET['bookreg'];
 		$user = $_GET['bookuser'];
 
-		echo $_GET['bookdate'];
 		$go = 0;
 		$query1 = "SELECT * from booking
 					WHERE `reg_id`=".$reg."
 					AND CAST(`start` as DATE)='".$dt."'
 					AND `fac_id`=".$fac."
-					AND `user_id`='".$user."';";
-		echo $query1;			
+					AND `user_id`='".$user."';";			
 		$counting = mysql_query($query1);
 	
 		$rowbook = mysql_num_rows($counting);
 		echo '<script>console.log(',$rowbook,'); </script>	';
-		if($rowbook > 2)
+		if($rowbook > 2 && !$_SESSION['admin'])
 		{
 			$go = 1;
 		}
@@ -41,9 +39,9 @@
 				$rowmax = mysql_fetch_array($max);
 				$val = $rowmax[0] +1;	
 				
-				$query_insert = "INSERT INTO booking (`book_id`,`fac_id`,`reg_id`,`user_id`,`start`,`end`) VALUES(".$val.",".$_GET['bookfac'].",".$_GET['bookreg'].",'".$_GET['bookuser']."','".$dtstart."','".$dtend."')";
-				mysql_query($query_insert);		
-				echo '<script>console.log("Blah"); </script>	';
+				$query_insert = "INSERT INTO booking (`book_id`,`fac_id`,`reg_id`,`user_id`,`start`,`end`) 
+								 VALUES(".$val.",".$_GET['bookfac'].",".$_GET['bookreg'].",'".$_GET['bookuser']."','".$dtstart."','".$dtend."')";
+				mysql_query($query_insert);
 				echo '<script>window.location.href = "/cs2102/inc/user-bookings.php"; </script>	';
 			}	
 		}
