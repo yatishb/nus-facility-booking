@@ -18,6 +18,14 @@
 		$fac = $open = $close = $capacity = $whiteboard = $proj = $audio = "";
 		$flag = false;
 		$success1 = $success2 = 0;
+		
+	    function decodeBoolean($str) {
+			if($str == "yes") {
+				return 1;
+			} else {
+				return 0;
+			}
+		}
 
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			if(isset($_POST["create"])){
@@ -89,13 +97,7 @@
 		}
 
 
-		function decodeBoolean($str) {
-			if($str == "yes") {
-				return 1;
-			} else {
-				return 0;
-			}
-		}
+
 
 		if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create"])) {
 			if($success1 && $success2 && isset($_POST["create"])) {

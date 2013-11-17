@@ -8,6 +8,13 @@
 
 		$regions = getAllRegions();
 
+		function decodeBoolean($str) {
+			if($str == "yes") {
+				return 1;
+			} else {
+				return 0;
+			}
+		}
 
 		$query = "SELECT max(fac_id) FROM facility;";
 		$result = mysql_query($query);
@@ -81,14 +88,6 @@
 			}
 		}
 
-
-		function decodeBoolean($str) {
-			if($str == "yes") {
-				return 1;
-			} else {
-				return 0;
-			}
-		}
 
 		if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create"])) {
 			if($success1 && $success2 && isset($_POST["create"])) {
