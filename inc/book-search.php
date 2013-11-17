@@ -211,6 +211,7 @@ if (isset($_POST['submit'])) :
 							<td><?php echo $row[2]; ?></td>
 							<td><?php echo $row[3]; ?></td>
 							<?php 
+							if($row[3] >5 ) {
 								if(($starttime=="ANY") && ($endtime=="ANY"))
 									{
 										$starttime=$row[4];
@@ -222,7 +223,18 @@ if (isset($_POST['submit'])) :
 								start=<?php echo $starttime; ?>&
 								end=<?php echo $endtime; ?>&
 								date=<?php echo $bookdate; ?>&
-								reg=<?php echo $row[6]; ?>">Book</a></td>							
+								reg=<?php echo $row[6]; ?>">Book</a></td>
+							<?php 
+							} elseif($row[3] > 0){ ?>
+								<td>
+							<a class="btn btn-warning" href="book-facility.php?facid=<?php echo $row[7]; ?>&
+								start=<?php echo $starttime; ?>&
+								end=<?php echo $endtime; ?>&
+								date=<?php echo $bookdate; ?>&
+								reg=<?php echo $row[6]; ?>">Few Slots</a></td>
+							<?php } else { ?>
+								<td><button class="btn btn-danger" disabled="disabled" >No Slots</button></td>
+							<?php } ?>
 						</tr>
 
 			<?php		
