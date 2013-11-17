@@ -9,7 +9,7 @@ include ($root."/cs2102/inc/search-bar.php");
 ?>
 </div>
 <?php
-if (isset($_POST['submit'])) :
+if (isset($_POST['submit']) || isset($_POST['submit1'])) :
 			$region = mysql_real_escape_string($_POST['region']);
 			$facility = mysql_real_escape_string($_POST['facility']);
 			$facilitytype = mysql_real_escape_string($_POST['facility-type']);
