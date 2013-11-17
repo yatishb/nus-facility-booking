@@ -130,7 +130,7 @@
 
 
 <?php
-	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create"])) {
 		if($success1 && $success2 && isset($_POST["create"])) {
 			echo "The Sports Facility ".$fac." has been successfully created";
 		} else {
