@@ -20,7 +20,7 @@ if(isset($_POST['bookstart']))
 {
 	$bookstart = $_POST['bookstart'];
 	$bookend = $_POST['bookend'];
-	$bookdate = $_GET['bookdate'];
+	$bookdate = $_POST['bookdate'];
 	$bookfac = $_POST['bookfac'];
 	$bookreg = $_POST['bookreg'];
 }
