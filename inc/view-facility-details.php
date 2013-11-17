@@ -170,6 +170,6 @@ $("#facility").load("getter-view-facility-details.php?choice=" +  temp);
 
 </br>
 <a href='/cs2102/inc/admin-panel.php'>
-	<button style="margin-left:165px;" type="submit" class="btn btn-default btn-xs" name="back">Back To Admin Panel</button>
+	<button style="margin-left:167px;" type="submit" class="btn btn-warning btn-xs" name="back">Back To Admin Panel</button>
 </a>
 <?php include("footer.php"); ?>
