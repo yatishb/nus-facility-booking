@@ -1,8 +1,11 @@
-<html>
-<head></head>
-<body>
+<?php include("header.php"); ?>
 <script src="https://code.jquery.com/jquery.js"></script>
-<h2>LOADING....</h2>
+<h2 class="nusblue">Loading....</h2>
+<div class="progress progress-striped active">
+  <div class="progress-bar"  role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
+    <span class="sr-only">90% Complete</span>
+  </div>
+</div>
 
 <?php
 	$regid = $_GET['region'];
@@ -19,14 +22,7 @@
 </form>
 
 <script type="text/javascript">
-/*$("#mapform").change(​
-function() {
-var frm = document.getElementById("mapform");
-frm.submit();
-});
-window.onload = myfunc;*/
 document.getElementById("mapform").submit();
 </script>
 
-</body>
-</html>
+<?php include("footer.php"); ?>
