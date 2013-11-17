@@ -4,6 +4,25 @@
 document.getElementById("mastlink-login").className = "active";
 </script>
 
+<?php
+if(isset($_GET['bookstart']))
+{
+	$bookstart = $_GET['bookstart'];
+	$bookend = $_GET['bookend'];
+	$bookfac = $_GET['bookfac'];
+	$bookreg = $_GET['bookreg'];
+}
+?>
+
+<?php
+if(isset($_POST['bookstart']))
+{
+	$bookstart = $_POST['bookstart'];
+	$bookend = $_POST['bookend'];
+	$bookfac = $_POST['bookfac'];
+	$bookreg = $_POST['bookreg'];
+}
+?>
 
 <?php
 if(isset($_POST['username-login']))
@@ -43,7 +62,6 @@ if(isset($_POST['username-login']))
 
 <?php
 
-
 if(isset($_POST['username-register']))
 {
 	$name_register = $_POST['name-register'];
@@ -82,6 +100,10 @@ if(isset($_POST['username-register']))
         <h2 class="form-signin-heading nusblue">Login</h2>
         <input type="text" name = "username-login" class="form-control" placeholder="Matric number">
         <input type="password" name = "pass-login" class="form-control" placeholder="Password">
+        <input type="hidden" name = "bookstart" value = <?php echo $bookstart ?>>
+        <input type="hidden" name = "bookend" value = <?php echo $bookend ?>>
+        <input type="hidden" name = "bookfac" value = <?php echo $bookfac ?>>
+        <input type="hidden" name = "bookreg" value = <?php echo $bookreg ?>>
         <br>
         <button class="btn btn-warning" type="submit">Login</button>
       </form>
@@ -100,8 +122,10 @@ if(isset($_POST['username-register']))
 </div>
 </div>
 
-<?php if (isset($_SESSION['username'])) { ?>
+<?php if (isset($_SESSION['username']) && !isset($_POST['bookstart'])) { ?>
 <script>window.location.href = "/cs2102/index.php"; </script>
+<?php } else if (isset($_SESSION['username']) && isset($_POST['bookstart'])) { ?>
+<script>window.location.href = "/cs2102/inc/book-facility.php?bookstart=<?php echo $bookstart; ?>&bookend=<?php echo $bookend; ?>&bookfac=<?php echo $bookfac; ?>&bookreg=<?php echo $bookreg; ?>"; </script>
 <?php } ?>
 
 <?php include("footer.php"); ?>
