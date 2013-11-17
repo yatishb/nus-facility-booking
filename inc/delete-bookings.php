@@ -120,52 +120,53 @@ $("#facility").load("getter-view-facility-details.php?choice=" +  temp);
 			}
 
 			$result = mysql_query($query);
-			if(mysql_num_rows($result) >= 0) {
-				?></br><h5 class='warningred'>The following bookings were found :</h5><?php
-			} else {
+			if(mysql_num_rows($result) == 0) {
 				?></br><h5 class='warningred'>No bookings found for the facility and date selected</h5><?php
-			}
-			while($row = mysql_fetch_array($result)) {
-				$eachBooking = array(
-									'id' => $row['book_id'],
-									'user' => $row['user_id'],
-									'facName' => $row['name'],
-									'start' => substr($row['start'], 11),
-									'end' => substr($row['end'], 11),
-									'date' => substr($row['start'], 0, 10)
-									);
-				array_push($bookings, $eachBooking);
-			}
+			} else {
+				?></br><h5 class='warningred'>The following bookings were found :</h5><?php
+			
+				while($row = mysql_fetch_array($result)) {
+					$eachBooking = array(
+										'id' => $row['book_id'],
+										'user' => $row['user_id'],
+										'facName' => $row['name'],
+										'start' => substr($row['start'], 11),
+										'end' => substr($row['end'], 11),
+										'date' => substr($row['start'], 0, 10)
+										);
+					array_push($bookings, $eachBooking);
+				}
 
-			?>
-		</br></br>
-			<table class="table">
-				<tr>
-					<th>Facility</th>
-					<th>Date</th>
-					<th>Start Time</th>
-					<th>End Time</th>
-					<th>User</th>
-				</tr>
-				<?php
-				foreach ($bookings as $eachBooking) {
-					?><tr>
-					<td><?php echo $eachBooking['facName']; ?></td>
-					<td><?php echo $eachBooking['date']; ?></td>
-					<td><?php echo $eachBooking['start']; ?></td>
-					<td><?php echo $eachBooking['end']; ?></td>
-					<td><?php echo $eachBooking['user']; ?></td>
-					<td><form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
-						<input type="hidden" name="facility" value="<?php if($idFac != NULL) echo $idFac; ?>" />
-						<input type="hidden" name="region" value="<?php if($idRegion != NULL) echo $idRegion; ?>" />
-						<input type="hidden" name="date" value="<?php if($date != NULL) echo $date; ?>" />
-						<input type="hidden" name="booking" value=1 />
-						<button class="btn btn-danger" type="submit" name="delete" value="<?php echo $eachBooking['id']; ?>">Delete</button>
-					</td>
-					</tr><?php
-				} ?>
-			</table>
+				?>
+				</br></br>
+				<table class="table">
+					<tr>
+						<th>Facility</th>
+						<th>Date</th>
+						<th>Start Time</th>
+						<th>End Time</th>
+						<th>User</th>
+					</tr>
+					<?php
+					foreach ($bookings as $eachBooking) {
+						?><tr>
+						<td><?php echo $eachBooking['facName']; ?></td>
+						<td><?php echo $eachBooking['date']; ?></td>
+						<td><?php echo $eachBooking['start']; ?></td>
+						<td><?php echo $eachBooking['end']; ?></td>
+						<td><?php echo $eachBooking['user']; ?></td>
+						<td><form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
+							<input type="hidden" name="facility" value="<?php if($idFac != NULL) echo $idFac; ?>" />
+							<input type="hidden" name="region" value="<?php if($idRegion != NULL) echo $idRegion; ?>" />
+							<input type="hidden" name="date" value="<?php if($date != NULL) echo $date; ?>" />
+							<input type="hidden" name="booking" value=1 />
+							<button class="btn btn-danger" type="submit" name="delete" value="<?php echo $eachBooking['id']; ?>">Delete</button>
+						</td>
+						</tr><?php
+					} ?>
+				</table>
 			<?php
+			}
 		}
 
 	} else {
