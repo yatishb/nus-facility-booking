@@ -9,6 +9,7 @@ if(isset($_GET['bookstart']))
 {
 	$bookstart = $_GET['bookstart'];
 	$bookend = $_GET['bookend'];
+	$bookdate = $_GET['bookdate'];
 	$bookfac = $_GET['bookfac'];
 	$bookreg = $_GET['bookreg'];
 }
@@ -19,6 +20,7 @@ if(isset($_POST['bookstart']))
 {
 	$bookstart = $_POST['bookstart'];
 	$bookend = $_POST['bookend'];
+	$bookdate = $_GET['bookdate'];
 	$bookfac = $_POST['bookfac'];
 	$bookreg = $_POST['bookreg'];
 }
@@ -104,6 +106,7 @@ if(isset($_POST['username-register']))
         <input type="hidden" name = "bookend" value = <?php echo $bookend ?>>
         <input type="hidden" name = "bookfac" value = <?php echo $bookfac ?>>
         <input type="hidden" name = "bookreg" value = <?php echo $bookreg ?>>
+        <input type="hidden" name = "bookdate" value = <?php echo $bookdate ?>>
         <br>
         <button class="btn btn-warning" type="submit">Login</button>
       </form>
@@ -125,7 +128,7 @@ if(isset($_POST['username-register']))
 <?php if (isset($_SESSION['username']) && !isset($_POST['bookstart'])) { ?>
 <script>window.location.href = "/cs2102/index.php"; </script>
 <?php } else if (isset($_SESSION['username']) && isset($_POST['bookstart'])) { ?>
-<script>window.location.href = "/cs2102/inc/book-facility.php?bookstart=<?php echo $bookstart; ?>&bookend=<?php echo $bookend; ?>&bookfac=<?php echo $bookfac; ?>&bookreg=<?php echo $bookreg; ?>"; </script>
+<script>window.location.href = "/cs2102/inc/book-facility.php?bookstart=<?php echo $bookstart; ?>&bookend=<?php echo $bookend; ?>&bookfac=<?php echo $bookfac; ?>&bookreg=<?php echo $bookreg; ?>&bookdate=<?php echo $bookdate; ?>"; </script>
 <?php } ?>
 
 <?php include("footer.php"); ?>
