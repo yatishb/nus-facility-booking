@@ -8,12 +8,24 @@
 	$reg = mysql_real_escape_string(urldecode($_GET['region']));
 	$type = mysql_real_escape_string(urldecode($_GET['type']));
 	$query = 	"SELECT * 
-				FROM facility
-				WHERE `reg_id`='$reg'";
-	if(!($type=="ANY"))
-	{
-		$query.= "AND `type` = '$type'";
-	}
+				FROM facility";
+	if(!($type == "ANY") || !($reg=="ANY"))
+	{	
+		$query.= " WHERE ";
+		if(!($reg == "ANY"))
+		{
+			$query.= "`reg_id` = ".$reg;
+		}
+			
+		if(!($type == "ANY") )
+		{
+			if(!($reg == "ANY"))
+			{
+				$query.= " AND ";
+			}
+			$query.= "`type` = '".$type."'";
+		}
+	}			
 	$query.=";";
 	$result = mysql_query($query);
 	echo "<option value='ANY'>Any</option>";

@@ -15,9 +15,9 @@
     </div>
     <div id="collapseOne" class="panel-collapse collapse in">
       <div class="panel-body">
-      		<a href="add-region.php" class="btn btn-success">Add New Region</a>
-      		<a href="view-all-regions.php" class="btn btn-primary">View All Regions</a>
-      		<a href="modify-region.php" class="btn btn-warning">Modify Regions</a>
+      		<a href="add-region.php" class="btn btn-success">Add New Region</a><br><br>
+      		<a href="view-all-regions.php" class="btn btn-primary">View All Regions</a><br><br>
+      		<a href="modify-region.php" class="btn btn-warning">Modify Regions</a><br><br>
       		<a href="remove-region.php" class="btn btn-danger">Remove Region</a>
       </div>
     </div>
@@ -33,10 +33,10 @@
     <div id="collapseTwo" class="panel-collapse collapse">
       <div class="panel-body">
       		<a href="add-academicroom.php" class="btn btn-success">Add New Academic Room</a>
-      		<a href="add-sportsfac.php" class="btn btn-success">Add New Sports Facility</a>
+      		<a href="add-sportsfac.php" class="btn btn-success">Add New Sports Facility</a><br><br>
       		<a href="view-all-facility-in-region.php" class="btn btn-primary">View All Facilities</a>
-      		<a href="view-facility-details.php" class="btn btn-primary">View Facility Details</a>
-      		<a href="modify-facility.php" class="btn btn-warning">Modify Facility</a>
+      		<a href="view-facility-details.php" class="btn btn-primary">View Facility Details</a><br><br>
+      		<a href="modify-facility.php" class="btn btn-warning">Modify Facility</a><br><br>
       		<a href="remove-facility.php" class="btn btn-danger">Remove Facility</a>
       </div>
     </div>

@@ -1,11 +1,10 @@
+<?php include ("header.php");?>
 <DOCTYPE html>
 <html>
 <head>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" ></script>
 	<title>Profile</title>
 	<?php
-			$root = $_SERVER['DOCUMENT_ROOT'];
-			include ($root."/cs2102/inc/db-conn.php");
 			$conn = setup_db();
 			//if(isset($_SESSION['user']))
 			//{
@@ -40,7 +39,7 @@
 				$delquery ="DELETE FROM booking 
 			 			WHERE book_id = ".$delid.";";
 				$delresult = mysql_query($delquery);
-				echo '<script>console.log("Here3");</script>';
+				//echo '<script>console.log("Here3");</script>';
 				//echo '<script>location.reload();</script>';
 			}
 
@@ -48,9 +47,9 @@
 			$result = mysql_query($query);
 			echo '<script>console.log("Here2");</script>';
 
-			echo'<table border="1" cellpadding="5">';
-			echo mysql_num_rows($result) ;
-			if (count($result)<0) :
+			if (mysql_num_rows($result) >0) 
+			{
+				echo'<table border="1" cellpadding="5">';
 	?>
 				<tr>
 				<th>Facility</th>
@@ -68,17 +67,33 @@
 					<td><?php echo $row['Region'] ?></td>
 					<td><?php echo $row['start'] ?></td>
 					<td><?php echo $row['end'] ?></td>
+	<?php			
+					$today = date('Y-m-d');
+					$todate = strtotime( $today );
+					$phpdate = strtotime( $row['start'] );
+					//$mysqldate = date( 'Y-m-d H:i:s', $phpdate );
+					
+					if($phpdate >= $todate):
+	?>			
 					<td>
 					<form method = "POST" action="<?php echo $_SERVER["PHP_SELF"]; ?>" onsubmit="return confirm('Are you sure?');">
 					<button name="delConfirm" type="submit" value="<?php echo $row['book_id']; ?>">Delete</button>
 					<input type="hidden" name="ifDelBooking" value="<?php echo $row['book_id']; ?>">
 					</form>
 					</td>
+	<?php			
+					endif;
+	?>				
 					</tr>
 	<?php	
 				}
-			endif;
-			echo'</table>';			
+			echo'</table>';				
+			}
+			else
+			{
+				//echo 'You have no recent bookings!';
+			}
+			
 	?>
 	
 	
@@ -88,3 +103,4 @@
 </div>
 </body>
 </html>
+<?php include ("footer.php");?>

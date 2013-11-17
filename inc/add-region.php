@@ -69,9 +69,9 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="location" class="col-sm-2 control-label">Location : </label>
+		<label for="location" class="col-sm-2 control-label">Address : </label>
 		<div class="col-sm-6">
-		<input class="form-control" type="text" style="width:200px" id="location" name="location" placeholder="location of the new region" />
+		<input class="form-control" type="text" style="width:200px" id="location" name="location" placeholder="address of the new region" />
 			<?php echo $locationErr; ?>
 		</div>
 	</div></br>
@@ -93,6 +93,6 @@
 
 
 <a href='/cs2102/inc/admin-panel.php'>
-	<button style="margin-left:165px;" type="submit" class="btn btn-default btn-sm" name="back">Back To Admin Panel</button>
+	<button style="margin-left:168px;" type="submit" class="btn btn-warning btn-xs" name="back">Back To Admin Panel</button>
 </a>
 <?php include("footer.php"); ?>

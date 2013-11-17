@@ -10,7 +10,6 @@
 
     <!--Style -->
     <link href="/cs2102/css/bootstrap.css" rel="stylesheet">
-    <link href="/cs2102/css/datepicker.min.css" rel="stylesheet">
     <link href="/cs2102/css/style.css" rel="stylesheet">
 
     <!--Favicon -->
