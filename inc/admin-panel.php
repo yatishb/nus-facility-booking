@@ -1,4 +1,7 @@
 <?php include("header.php"); ?>
+<?php
+	if($_SESSION['admin']) {
+?>
 <h3 class="nusblue">Welcome Admin!</h3><br>
 
 <div class="panel-group" id="accordion">
@@ -67,5 +70,12 @@
     </div>
   </div>
 </div>
+<?php
+	} else if(isset($_SESSION['username'])) {
+		echo ("<h4>Sorry you are not an admin user !</h4>");
+	} else {
+		header("Location: /cs2102/inc/login.php");
+	}
+?>
 
 <?php include("footer.php"); ?>
