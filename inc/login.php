@@ -102,11 +102,14 @@ if(isset($_POST['username-register']))
         <h2 class="form-signin-heading nusblue">Login</h2>
         <input type="text" name = "username-login" class="form-control" placeholder="Matric number">
         <input type="password" name = "pass-login" class="form-control" placeholder="Password">
-        <input type="hidden" name = "bookstart" value = <?php echo $bookstart ?>>
-        <input type="hidden" name = "bookend" value = <?php echo $bookend ?>>
-        <input type="hidden" name = "bookfac" value = <?php echo $bookfac ?>>
-        <input type="hidden" name = "bookreg" value = <?php echo $bookreg ?>>
-        <input type="hidden" name = "bookdate" value = <?php echo $bookdate ?>>
+        <?php
+        	if(isset($_GET['bookstart'])) { ?>
+        	<input type="hidden" name = "bookstart" value = <?php echo $bookstart ?>>
+	        <input type="hidden" name = "bookend" value = <?php echo $bookend ?>>
+	        <input type="hidden" name = "bookfac" value = <?php echo $bookfac ?>>
+	        <input type="hidden" name = "bookreg" value = <?php echo $bookreg ?>>
+	        <input type="hidden" name = "bookdate" value = <?php echo $bookdate ?>>
+	        <?php } ?>
         <br>
         <button class="btn btn-warning" type="submit">Login</button>
       </form>
