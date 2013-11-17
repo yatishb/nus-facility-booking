@@ -44,7 +44,7 @@
 			$countUser = $countUser[0];
 
 			if($countUser != 0) {
-				$query = "UPDATE user u SET u.is_admin = 0,
+				$query = "UPDATE user u SET 
 						  u.password = '".md5($pass1)."', 
 						  u.name = '".$name."'  
 						  WHERE u.user_id = '".$id."' ;";
