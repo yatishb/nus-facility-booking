@@ -96,6 +96,32 @@
 		}
 	}
 
+	if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create"])) {
+		if($success1 && $success2 && isset($_POST["create"])) {
+			?>
+			<div class="alert alert-success alert-dismissable">
+  				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<?php echo "The Academic room ".$fac." has been successfully created"; ?>
+			</div>
+			<?php
+		} else {
+			?>
+			<div class="alert alert-success alert-dismissable">
+  				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<?echo "Could not create the room"; ?>
+			</div>
+			<?php
+			if($success1 == 1) {
+				$query = "DELETE FROM facility WHERE fac_id = ".$fac_id;
+				mysql_query($query);
+			} else {
+				$query = "DELETE FROM academic WHERE fac_id = ".$fac_id;
+				mysql_query($query);
+			}
+		}
+
+	}
+
 ?>
 
 
@@ -127,7 +153,7 @@
         <div class="form-group">
         <label for="optime" class="col-sm-2 control-label">Opening Time : </label>
         <div class="col-sm-6">
-        <input class="form-control" style="width:200px;" id="optime" type="text" name="opening"/>
+        <input class="form-control" style="width:200px;" id="optime" type="time" name="opening"/>
                 <?php echo $err_open; ?>
         </div>
         </div>
@@ -135,7 +161,7 @@
         <div class="form-group">
         <label for="cltime" class="col-sm-2 control-label">Closing Time : </label>
         <div class="col-sm-6">
-        <input class="form-control" style="width:200px;" id="cltime" type="text" name="closing"/>
+        <input class="form-control" style="width:200px;" id="cltime" type="time" name="closing"/>
                 <?php echo $err_close; ?>
         </div>
         </div>
@@ -168,7 +194,7 @@
 	</div></br>
 	<div class="form-group">
 	<div class="col-sm-offset-2 col-sm-6">
-	<button type="submit" class="btn btn-primary" name="create">Create New Facility</button>
+	<button type="submit" class="btn btn-primary btn-lg" name="create">Create New Facility</button>
 	</div>
 	</div>
 </form>
@@ -176,21 +202,7 @@
 
 
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create"])) {
-	if($success1 && $success2 && isset($_POST["create"])) {
-		echo "The Academic room ".$fac." has been successfully created";
-	} else {
-		echo "Could not create the room";
-		if($success1 == 1) {
-			$query = "DELETE FROM facility WHERE fac_id = ".$fac_id;
-			mysql_query($query);
-		} else {
-			$query = "DELETE FROM academic WHERE fac_id = ".$fac_id;
-			mysql_query($query);
-		}
-	}
 
-}
 if(isset($_POST["back"])){
 	close_db($conn);
 	header('Location: /cs2102/inc/admin-panel.php');
@@ -202,6 +214,6 @@ if(isset($_POST["back"])){
 
 </br>
 <form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
-	<button style="margin-left:165px;" type="submit" class="btn btn-default" name="back">BACK</button>
+	<button style="margin-left:165px;" type="submit" class="btn btn-default btn-sm" name="back">Back To Admin Panel</button>
 </form>
 <?php include("footer.php"); ?>
