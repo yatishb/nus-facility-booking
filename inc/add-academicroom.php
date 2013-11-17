@@ -103,7 +103,6 @@
 
 <form class="form-horizontal" role="form" action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
  
-<<<<<<< HEAD
 		<div class="form-group">
         <label for="region" class="col-sm-2 control-label">Region : </label>
         <div class="col-sm-6">
@@ -148,71 +147,8 @@
         </div>
         </div>	
         <hr>
-=======
-	<div class="form-group">
-	<label for="region" class="col-sm-2 control-label">Region : </label>
-	<div class="col-sm-6">
-	<select class="form-control" id="region" name = "region">
-		<?php
-		foreach($regions as $eachregion) {
-			echo "<option value = ".$eachregion['id'].">".$eachregion['region']."</option>";
-		}
-		?>
-<<<<<<< HEAD
-		</select></br>
-	<label>New Facility : </label>
-	<input type="text" style="width:200px" name="facility" placeholder="new facility name" />
-		<?php echo $err_fac; ?></br>
-	<label>Opening Time : </label>
-	<input type="time" name="opening"/>
-		<?php echo $err_open; ?></br>
-	<label>Closing Time : </label>
-	<input type="time" name="closing"/>
-		<?php echo $err_close; ?></br>
-	<label>Capacity: </label>
-	<input type="text" style="width:200px" name="capacity" placeholder="capacity of the facility" />
-		</br>
-=======
-	</select>
-	</div>
-	</div>
-	
-	<div class="form-group">
-	<label for="facility" class="col-sm-2 control-label">New Facility : </label>
-	<div class="col-sm-6">
-	<input class="form-control" id="facility"  type="text" name="facility" placeholder="new facility name" />
-		<?php echo $err_fac; ?>
-	</div>
-	</div>
-	
-	<div class="form-group">
-	<label for="optime" class="col-sm-2 control-label">Opening Time : </label>
-	<div class="col-sm-6">
-	<input class="form-control" style="width:200px;" id="optime" type="text" name="opening"/>
-		<?php echo $err_open; ?>
-	</div>
-	</div>
-	
-	<div class="form-group">
-	<label for="cltime" class="col-sm-2 control-label">Closing Time : </label>
-	<div class="col-sm-6">
-	<input class="form-control" style="width:200px;" id="cltime" type="text" name="closing"/>
-		<?php echo $err_close; ?>
-	</div>
-	</div>
-	
-	<div class="form-group">
-	<label for="capacity" class="col-sm-2 control-label">Capacity: </label>
-	<div class="col-sm-6">
-	<input class="form-control" style="width:200px;" id="capacity" type="text" style="width:200px" name="capacity" placeholder="capacity of the facility" />
-	</div>
-	</div>
-	
-<hr>
->>>>>>> master
 	
 	<div style="margin-left:75px;">
->>>>>>> dev
 	<label>Whiteboard : </label>
 	<input type="radio" name="whiteboard" value="yes"> Yes
 	<input type="radio" name="whiteboard" value="no"> No
