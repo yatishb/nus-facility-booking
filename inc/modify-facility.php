@@ -102,8 +102,8 @@ $("#editFac").load("getter-view-facility-details.php?choice=" +  temp);
 	</br></br>Modify the following fields to change the features present in the facility:</br>
 	<form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
 		Facility Name <input type = "text" name = "newName" value = "<?php echo $facility['name']?>" /></br>
-		Opening Time <input type = "text" name = "newOpen" value = "<?php echo $facility['open']; ?>" /></br>
-		Closing Time <input type = "text" name = "newClose" value = "<?php echo $facility['close']; ?>" /></br>
+		Opening Time <input type = "time" name = "newOpen" value = "<?php echo $facility['open']; ?>" /></br>
+		Closing Time <input type = "time" name = "newClose" value = "<?php echo $facility['close']; ?>" /></br>
 		Capacity <input type = "text" name = "newCapacity" value = "<?php echo $facility['capacity']; ?>" /></br>
 		<?php
 			if($facility['type'] == 'academic') {
