@@ -17,11 +17,11 @@
 					AND CAST(`start` as DATE)='".$dt."'
 					AND `fac_id`=".$fac."
 					AND `user_id`='".$user."';";
-		echo $query1;			
+					
 		$counting = mysql_query($query1);
 	
 		$rowbook = mysql_num_rows($counting);
-		echo '<script>console.log(',$rowbook,'); </script>	';
+		
 		if($rowbook > 2)
 		{
 			$go = 1;
@@ -43,7 +43,7 @@
 				
 				$query_insert = "INSERT INTO booking (`book_id`,`fac_id`,`reg_id`,`user_id`,`start`,`end`) VALUES(".$val.",".$_GET['bookfac'].",".$_GET['bookreg'].",'".$_GET['bookuser']."','".$dtstart."','".$dtend."')";
 				mysql_query($query_insert);		
-				echo '<script>console.log("Blah"); </script>	';
+				
 				echo '<script>window.location.href = "/cs2102/inc/user-bookings.php"; </script>	';
 			}	
 		}
