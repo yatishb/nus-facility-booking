@@ -34,6 +34,11 @@
 			      Hi <?php echo $_SESSION['name']; ?>! <span class="caret"></span>
 			    </a>
 			    <ul class="dropdown-menu">
+			      <?php
+			          if (($_SESSION['admin'])) {
+			      ?>
+			      <li><a href="/cs2102/inc/admin-panel.php">Admin Panel</a></li>
+			      <?php } ?>
 			      <li><a href="#">History</a></li>
 			      <li><a href="#">Profile</a></li>
 			      <li class="divider"></li>
