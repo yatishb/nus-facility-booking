@@ -5,7 +5,7 @@
 	<title>My Test Form</title>
 	<?php
 			$root = $_SERVER['DOCUMENT_ROOT'];
-			include ($root."/cs2102/inc/db-conn.php");
+			//include ($root."/cs2102/inc/db-conn.php");
 			$conn = setup_db();
 			$query = "SELECT * FROM region;";
 			$result = mysql_query($query);
@@ -15,14 +15,14 @@
 
 <div align="center">
 	
-	<form method="POST">
+	<form method="POST" action="book-test.php">
 	<p></p>
 	<p>
 		<label for="region">Region:</label>
 		<select id="region" name="region">
-			<option select value="base">Please Select</option>
 			<?php
 				if ($result) :
+				echo '<option value="ANY"> Any </option>';	
 				while ($row = mysql_fetch_assoc($result))
 				{
 					echo '<option value="', $row['reg_id'], '">', $row['name'], '</option>';
@@ -42,56 +42,73 @@
 		<select id="facility" name="facility">
 			<option>Please choose from above</option>
 		</select>
+
+		<label for="start-time">Start Time:</label>
+		<select id="start-time" name="start-time">
+			<option value="ANY"> Any </option>
+			<?php
+				$query = "SELECT `start` 
+						FROM timeslot 
+						ORDER BY `start`;";
+				$result = mysql_query($query);
+				if ($result) :
+				while ($row = mysql_fetch_assoc($result))
+				{
+					echo '<option value="', $row['start'], '">', $row['start'], '</option>';
+				}
+				endif;
+			?>			
+		</select>
+
+		<label for="end-time">End Time:</label>
+		<select id="end-time" name="end-time">
+			<option value="ANY"> Any </option>
+			<?php
+				$query = "SELECT `end` 
+						FROM timeslot 
+						ORDER BY `end`;";
+				$result = mysql_query($query);
+				if ($result) :
+				while ($row = mysql_fetch_assoc($result))
+				{
+					echo '<option value="', $row['end'], '">', $row['end'], '</option>';
+				}
+				endif;
+			?>			
+		</select>
 	</p>
 	<p>
 	<input name="submit" type="submit" value="Search"></input>
 	</p>
 	</form>
-	
-	<?php if (isset($_POST['submit'])) :
-			$name = mysql_real_escape_string($_POST['region']);
-			$query ="SELECT * 
-					FROM facility 
-					WHERE `reg_id` = '". $name."'";
-			#if(!($_POST['facility-type'] == "ANY"))
-			#{
-				#$query.= "AND `type` = '".$_POST['facility-type']."'";
-			#}
-			$query.=";";
-			$result1 = mysql_query($query);
-				if ($result1) :
-	?>	
-	<table align="center" border="1" style="border-collapse:collapse;border-spacing=0" >
-		
-	<?php
-		while ($row = mysql_fetch_assoc($result1))
-		{
-			echo '<tr>';
-			echo '<td>', $row['reg_id'], '</td><td>', $row['fac_id'], '</td>';
-			echo '</tr>';
-		}
-	?>
-
-	</table>
-			<?php endif;?>
-		<?php endif; ?>
-	<?php close_db($conn); ?>
+	<?php //close_db($conn); ?>
 
 <script>
-$("#region").change(function() {
-var reg = (document.getElementById("region").value);
-var type = (document.getElementById("facility-type").value);
-console.log(type);
-console.log(reg);
-$("#facility").load("getter.php?region="+reg+"&type="+type);
-});
-$("#facility-type").change(function() {
-var reg = (document.getElementById("region").value);
-var type = (document.getElementById("facility-type").value);
-console.log(type);
-console.log(reg);
-$("#facility").load("getter.php?region="+reg+"&type="+type);
-});
+
+	$("#region").ready(function() {
+	var reg = (document.getElementById("region").value);
+	var type = (document.getElementById("facility-type").value);
+	console.log(type);
+	console.log(reg);
+	$("#facility").load("getter.php?region="+reg+"&type="+type);
+	});
+
+	$("#region").change(function() {
+	var reg = (document.getElementById("region").value);
+	var type = (document.getElementById("facility-type").value);
+	console.log(type);
+	console.log(reg);
+	$("#facility").load("getter.php?region="+reg+"&type="+type);
+	});
+
+	$("#facility-type").change(function() {
+	var reg = (document.getElementById("region").value);
+	var type = (document.getElementById("facility-type").value);
+	console.log(type);
+	console.log(reg);
+	$("#facility").load("getter.php?region="+reg+"&type="+type);
+	});
+
 </script>	
 </div>
 </body>
