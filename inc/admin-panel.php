@@ -73,9 +73,8 @@
 <?php
 	} else if(isset($_SESSION['username'])) {
 		echo ("<h4>Sorry you are not an admin user !</h4>");
-	} else {
-		header("Location: /cs2102/inc/login.php");
-	}
-?>
+	} else{ ?>
+		<script>window.location.href = "/cs2102/inc/login.php"; </script>
+<?php	 } ?>
 
 <?php include("footer.php"); ?>
