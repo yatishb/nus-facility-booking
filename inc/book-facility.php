@@ -44,11 +44,12 @@
 			<tr>
 				<?php  
 
-					$query1 = "SELECT * FROM booking b WHERE CAST(b.start AS TIME) ='".$row[0]."' AND CAST(b.end AS TIME) = '".$row[1]."' AND b.fac_id = ".$facid." AND b.reg_id = ".$reg;
+					$query1 = "SELECT * FROM booking b WHERE CAST(b.start AS DATE) ='".$date."' AND CAST(b.start AS TIME) ='".$row[0]."' AND CAST(b.end AS TIME) = '".$row[1]."' AND b.fac_id = ".$facid." AND b.reg_id = ".$reg;
 					
 					$result1 = mysql_query($query1);	
 					echo '<td>',$row[0],'</td>';
-					echo '<td>',$row[1],'</td>';
+					$newdt = date('H:i:s', strtotime($row[1])+1);
+					echo '<td>',$newdt,'</td>';
 				
 					//echo '<script> console.log("'.$num."');</script>";
 					if(mysql_num_rows($result1)==0)
@@ -58,7 +59,6 @@
 						$dtend = $row[1];
 						if(isset($_SESSION['username']))
 						{	
-							echo "<script> console.log('Redirecting to same page');</script>";
 							echo '<td><a class="btn btn-primary" href="confirm-booking.php?bookdate=',$date,'&bookreg=',$reg,'&bookstart=',$dtstart,'&bookend=',$dtend,'&bookfac=',$facid,'&bookuser=',$_SESSION['username'],'">
 							Book</a></td>';
 						}
@@ -68,6 +68,10 @@
 							echo '<td><a class="btn btn-primary" href="login.php?bookdate=',$date,'&bookstart=',$dtstart,'&bookend=',$dtend,'&bookfac=',$facid,'&bookreg=',$reg,'">
 							Book</a></td>';
 						}						 
+					}
+					else 
+					{
+						echo '<td><button type="button" class="btn btn-default" disabled="disabled">Booked</button></td>';
 					}
 				?>			
 				
