@@ -1,27 +1,15 @@
-<DOCTYPE html>
-<html>
-<head>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" ></script>
-	<title>My Test Form</title>
-	<?php
-			$root = $_SERVER['DOCUMENT_ROOT'];
-			//include ($root."/cs2102/inc/db-conn.php");
-			$conn = setup_db();
-			$query = "SELECT * FROM region;";
-			$result = mysql_query($query);
-	?>
-</head>
-<body>
-
-<div align="center">
-	
-	<form method="POST" action="book-search.php">
-	
-	<table cellpadding="5">
-	<tr>
-		<td>
-		<label for="region">Region:</label>
-		<select id="region" name="region">
+<?php
+$root = $_SERVER['DOCUMENT_ROOT'];
+$conn = setup_db();
+$query = "SELECT * FROM region;";
+$result = mysql_query($query);
+?>
+<div style="text-align:center">
+	<h2 class="nusorange" style="margin-top:-10px">Search using the dropdowns</h2><br>
+	<form class="form-inline" role="form" method="POST" action="/cs2102/inc/book-search.php">
+		<div class="form-group">
+		<label class="nusblue" for="region">Region</label>
+		<select class="form-control" id="region" name="region">
 			<?php
 				if ($result) :
 				echo '<option value="ANY"> Any </option>';	
@@ -32,28 +20,27 @@
 				endif;
 			?>
 		</select>
-		</td>
-
-		<td>
-		<label for="facility-type">Type:</label>
-		<select id="facility-type" name="facility-type">
+		</div>&nbsp&nbsp&nbsp
+		
+		<div class="form-group">
+		<label class="nusblue" for="facility-type">Type</label>
+		<select class="form-control" id="facility-type" name="facility-type">
 			<option value="ANY"> Any </option>
 			<option value="academic"> Academic </option>
 			<option value="sports"> Sports </option>
 		</select>
-		</td>
+		</div>&nbsp&nbsp&nbsp
 
-		<td>
-		<label for="facility">Facility:</label>
-		<select id="facility" name="facility">
+		<div class="form-group">
+		<label class="nusblue" for="facility">Facility</label>
+		<select class="form-control" id="facility" name="facility">
 			<option>Please choose from above</option>
 		</select>
-		</td>
-	</tr>
-	<tr>
-		<td>	
-		<label for="start-time">Start Time:</label>
-		<select id="start-time" name="start-time">
+		</div><br><br>
+
+		<div class="form-group">
+		<label class="nusblue" for="start-time">Start Time</label>
+		<select class="form-control input-sm" id="start-time" name="start-time">
 			<option value="ANY"> Any </option>
 			<?php
 				$query = "SELECT `start` 
@@ -68,11 +55,11 @@
 				endif;
 			?>			
 		</select>
-		</td>
-		
-		<td>
-		<label for="end-time">End Time:</label>
-		<select id="end-time" name="end-time">
+		</div>&nbsp&nbsp&nbsp
+
+		<div class="form-group">
+		<label class="nusblue" for="end-time">End Time</label>
+		<select class="form-control input-sm" id="end-time" name="end-time">
 			<option value="ANY"> Any </option>
 			<?php
 				$query = "SELECT  `end` , ADDTIME(`end`,1) AS  `enddisplay` 
@@ -91,11 +78,11 @@
 				endif;
 			?>			
 		</select>
-		</td>
+		</div>&nbsp&nbsp&nbsp
 
-		<td>
-		<label for="date">Date:</label>		
-		<select id="date" name="date">
+		<div class="form-group">
+		<label class="nusblue" for="date">Date</label>		
+		<select class="form-control input-sm" id="date" name="date">
 			<option value="ANY"> Any </option>
 			<?php
 				$today = date('Y-m-d');
@@ -111,13 +98,10 @@
 				
 			?>			
 		</select>
-		</td>
-	</tr>
-	</table>	
-
-	</p>
+		</div>
+	<br><br>
 	<p>
-	<input name="submit" type="submit" value="Search"></input>
+	<input name="submit" class="btn btn-warning btn-lg" type="submit" value="Search"></input>
 	</p>
 	</form>
 	<?php //close_db($conn); ?>
@@ -129,7 +113,7 @@
 	var type = (document.getElementById("facility-type").value);
 	console.log(type);
 	console.log(reg);
-	$("#facility").load("getter.php?region="+reg+"&type="+type);
+	$("#facility").load("/cs2102/inc/getter.php?region="+reg+"&type="+type);
 	});
 
 	$("#region").change(function() {
@@ -137,7 +121,7 @@
 	var type = (document.getElementById("facility-type").value);
 	console.log(type);
 	console.log(reg);
-	$("#facility").load("getter.php?region="+reg+"&type="+type);
+	$("#facility").load("/cs2102/inc/getter.php?region="+reg+"&type="+type);
 	});
 
 	$("#facility-type").change(function() {
@@ -145,10 +129,8 @@
 	var type = (document.getElementById("facility-type").value);
 	console.log(type);
 	console.log(reg);
-	$("#facility").load("getter.php?region="+reg+"&type="+type);
+	$("#facility").load("/cs2102/inc/getter.php?region="+reg+"&type="+type);
 	});
 
 </script>	
 </div>
-</body>
-</html>
