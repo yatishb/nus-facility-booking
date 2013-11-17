@@ -30,6 +30,37 @@
 			}
 		}
 
+		if ($_SERVER["REQUEST_METHOD"] == "POST"){
+			if(isset($_POST['confirm'])){
+				$idDelete = $_POST['id2'];
+				if($idDelete != "base") {
+					$query = "DELETE FROM region 
+							  WHERE reg_id = ".intval($idDelete).";";
+					$result = mysql_query($query);
+					foreach($regions as $eachregion) {
+						if($eachregion['id'] == $idDelete)
+							$name = $eachregion['region'];
+					}
+					if($result) {
+						?>
+						<div class="alert alert-success alert-dismissable">
+			  				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+							<?php echo $name." has been successfully deleted"; ?>
+						</div>
+						<?php
+						$regions = getAllRegions();
+					} else {
+						?>
+						<div class="alert alert-danger alert-dismissable">
+			  				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+							<?php echo $name." could not be deleted"; ?>
+						</div>
+						<?php
+					}
+				}
+			}
+		}
+
 ?>
 
 
@@ -64,24 +95,6 @@
 			}
 		}
 
-		if ($_SERVER["REQUEST_METHOD"] == "POST"){
-			if(isset($_POST['confirm'])){
-				$idDelete = $_POST['id2'];
-				if($idDelete != "base") {
-					$query = "DELETE FROM region 
-							  WHERE reg_id = ".intval($idDelete).";";
-					$result = mysql_query($query);
-					foreach($regions as $eachregion) {
-						if($eachregion['id'] == $idDelete)
-							$name = $eachregion['region'];
-					}
-					if($result) {
-						echo $name." has been successfully deleted";
-					}
-				}
-			}
-		}
-
 		close_db($conn);
 		if($id != "base") {
 			?>
@@ -100,6 +113,6 @@
 
 </br>
 <a href='/cs2102/inc/admin-panel.php'>
-	<button style="margin-left:165px;" type="submit" class="btn btn-default btn-sm" name="back">Back To Admin Panel</button>
+	<button style="margin-left:165px;" type="submit" class="btn btn-default btn-xs" name="back">Back To Admin Panel</button>
 </a>
 <?php include("footer.php"); ?>

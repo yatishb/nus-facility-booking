@@ -81,9 +81,19 @@ $("#editFac").load("getter-view-facility-details.php?choice=" +  temp);
 			}
 
 			if($result1 && $result2) {
-				echo "The facility has been successfully modified to ".$name." and the new features have been added";
+				?>
+				<div class="alert alert-success alert-dismissable">
+	  				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<?php echo "The facility has been successfully modified to ".$name." and the new features have been added"; ?>
+				</div>
+				<?php				
 			} else {
-				echo "The facility ".$name." could not be modified";
+				?>
+				<div class="alert alert-danger alert-dismissable">
+	  				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<?php echo "The facility ".$name." could not be modified"; ?>
+				</div>
+				<?php
 			}
 			$_POST['editFac'] = $id;
 			$_POST['editReg'] = $_POST['idRegion'];
@@ -152,6 +162,6 @@ $("#editFac").load("getter-view-facility-details.php?choice=" +  temp);
 
 </br>
 <a href='/cs2102/inc/admin-panel.php'>
-	<button style="margin-left:165px;" type="submit" class="btn btn-default btn-sm" name="back">Back To Admin Panel</button>
+	<button style="margin-left:165px;" type="submit" class="btn btn-default btn-xs" name="back">Back To Admin Panel</button>
 </a>
 <?php include("footer.php"); ?>

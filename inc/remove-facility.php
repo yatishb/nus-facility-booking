@@ -39,6 +39,22 @@
 				$query = "DELETE FROM facility 
 						  WHERE fac_id = ".intval($idFac)." AND reg_id = ".intval($idRegion).";";
 				$success = mysql_query($query);
+
+				if($success) {
+					?>
+					<div class="alert alert-success alert-dismissable">
+		  				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<?php echo "Facility ".$name." has been successfully deleted"; ?>
+					</div>
+					<?php
+				} else {
+					?>
+					<div class="alert alert-danger alert-dismissable">
+		  				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<?php echo "Facility ".$name." could not deleted"; ?>
+					</div>
+					<?php
+				}
 			}
 		}
 
@@ -93,11 +109,6 @@
 			}
 		}
 
-		if($name != NULL) {
-			echo "Facility ".$name." has been successfully deleted";
-		}
-
-
 		close_db($conn);
 	} else {
 		?>
@@ -109,6 +120,6 @@
 
 </br>
 <a href='/cs2102/inc/admin-panel.php'>
-	<button style="margin-left:165px;" type="submit" class="btn btn-default btn-sm" name="back">Back To Admin Panel</button>
+	<button style="margin-left:165px;" type="submit" class="btn btn-default btn-xs" name="back">Back To Admin Panel</button>
 </a>
 <?php include("footer.php"); ?>

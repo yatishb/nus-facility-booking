@@ -34,20 +34,7 @@
 				}
 			}
 		}
-?>
 
-<form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST" >
-	User Id: <input type="text" name="id" placeholder="must be 8 characters" value="<?php echo $id; ?>" /><?php echo $flagId; ?></br>
-	Name: <input type="text" name="name" value="<?php echo $name; ?>" /><?php echo $flagName; ?></br>
-	Password: <input type="password" name="password1" value="<?php echo $pass1; ?>" /><?php echo $flagPass1; ?></br>
-	Confirm Password: <input type="password" name="password2" value="<?php echo $pass2; ?>" /><?php echo $flagPass2; ?></br>
-	<button type="submit" name="createAdmin">Create New Admin</button>
-</form>
-
-
-
-
-<?php
 		if(isset($_POST['id']) && isset($_POST['name']) && isset($_POST['password1']) && $pass1 == $pass2 && $pass1 != "") {
 			$query = "SELECT count(*) FROM user u 
 					  WHERE u.user_id = '".$id."';";
@@ -66,12 +53,36 @@
 			}
 
 			if($resultQuery) {
-				echo $name." has been successfully added as an admin";
+				?>
+				<div class="alert alert-success alert-dismissable">
+	  				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<?php echo $name." has been successfully added as an admin"; ?>
+				</div>
+				<?php
 			} else {
-				echo $name." could not be added as an admin";
+				?>
+				<div class="alert alert-danger alert-dismissable">
+	  				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<?php echo $name." could not be added as an admin"; ?>
+				</div>
+				<?php
 			}
 		}
 		close_db($conn);
+?>
+
+<form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST" >
+	User Id: <input type="text" name="id" placeholder="must be 8 characters" value="<?php echo $id; ?>" /><?php echo $flagId; ?></br>
+	Name: <input type="text" name="name" value="<?php echo $name; ?>" /><?php echo $flagName; ?></br>
+	Password: <input type="password" name="password1" value="<?php echo $pass1; ?>" /><?php echo $flagPass1; ?></br>
+	Confirm Password: <input type="password" name="password2" value="<?php echo $pass2; ?>" /><?php echo $flagPass2; ?></br>
+	<button type="submit" name="createAdmin">Create New Admin</button>
+</form>
+
+
+
+
+<?php
 	} else {
 		?>
 		<script>window.location.href = "/cs2102/inc/login.php"; </script>
@@ -81,6 +92,6 @@
 
 </br>
 <a href='/cs2102/inc/admin-panel.php'>
-	<button style="margin-left:165px;" type="submit" class="btn btn-default btn-sm" name="back">Back To Admin Panel</button>
+	<button style="margin-left:165px;" type="submit" class="btn btn-default btn-xs" name="back">Back To Admin Panel</button>
 </a>
 <?php include("footer.php"); ?>
