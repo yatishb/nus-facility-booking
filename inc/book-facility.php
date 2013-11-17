@@ -28,6 +28,7 @@
 					$result1 = mysql_query($query1);	
 					echo '<td>',$row[0],'</td>';
 					echo '<td>',$row[1],'</td>';
+					?><td><?php
 					if(mysql_num_rows($result1) == 0)
 					{
 						$dtstart = $row[0];
@@ -35,17 +36,16 @@
 						if(isset($_SESSION['username']))
 						{	
 							echo "<script> console.log('Redirecting to same page');</script>";
-							echo '<td><a href="confirm-booking.php?bookdate=',$date,'&bookreg=',$reg,'&bookstart=',$dtstart,'&bookend=',$dtend,'&bookfac=',$facid,'&bookuser=',$_SESSION['username'],'">
-							Book</a></td>';
+							echo '<a href="confirm-booking.php?bookdate=',$date,'&bookreg=',$reg,'&bookstart=',$dtstart,'&bookend=',$dtend,'&bookfac=',$facid,'&bookuser=',$_SESSION['username'],'">
+							Book</a>';
 						}
 						else 
 						{			
-							echo "<script> console.log('Sending to login page'); </script>";	
-							echo '<td><a href="login.php?bookdate=',$date,'&bookstart=',$dtstart,'&bookend=',$dtend,'&bookfac=',$facid,'&bookreg=',$reg,'">
-							Book</a></td>';
+							/*echo "<script> console.log('Sending to login page'); </script>";	
+							echo '<a href="login.php?bookdate=',$date,'&bookstart=',$dtstart,'&bookend=',$dtend,'&bookfac=',$facid,'&bookreg=',$reg,'">
+							Book</a>';*/
 						}						 
-					}
-				?>			
+					} ?></td>
 				
 			</tr>	
 <?php			

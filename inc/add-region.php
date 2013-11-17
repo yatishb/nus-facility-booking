@@ -77,7 +77,7 @@
 	</div></br>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-6">
-		<button type="submit" class="btn btn-primary btn-lg" name="create">Create New Facility</button>
+		<button type="submit" class="btn btn-primary btn-lg" name="create">Create New Region</button>
 		</div>
 	</div>
 </form>
