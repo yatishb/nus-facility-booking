@@ -108,10 +108,10 @@
 	<input type="text" style="width:200px" name="facility" placeholder="new facility name" />
 		<?php echo $err_fac; ?></br>
 	<label>Opening Time : </label>
-	<input type="text" name="opening"/>
+	<input type="time" name="opening"/>
 		<?php echo $err_open; ?></br>
 	<label>Closing Time : </label>
-	<input type="text" name="closing"/>
+	<input type="time" name="closing"/>
 		<?php echo $err_close; ?></br>
 	<label>Capacity: </label>
 	<input type="text" style="width:200px" name="capacity" placeholder="capacity of the facility" />
@@ -130,7 +130,7 @@
 
 
 <?php
-	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create"])) {
 		if($success1 && $success2 && isset($_POST["create"])) {
 			echo "The Sports Facility ".$fac." has been successfully created";
 		} else {
@@ -144,10 +144,11 @@
 			}
 		}
 
-		if(isset($_POST["back"])){
-			close_db($conn);
-			header('Location: /cs2102/inc/admin-panel.php');
-		}
+	}
+
+	if(isset($_POST["back"])){
+		close_db($conn);
+		header('Location: /cs2102/inc/admin-panel.php');
 	}
 ?>
 

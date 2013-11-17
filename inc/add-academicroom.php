@@ -103,51 +103,50 @@
 
 <form class="form-horizontal" role="form" action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
  
-	<div class="form-group">
-	<label for="region" class="col-sm-2 control-label">Region : </label>
-	<div class="col-sm-6">
-	<select class="form-control" id="region" name = "region">
-		<?php
-		foreach($regions as $eachregion) {
-			echo "<option value = ".$eachregion['id'].">".$eachregion['region']."</option>";
-		}
-		?>
-	</select>
-	</div>
-	</div>
-	
-	<div class="form-group">
-	<label for="facility" class="col-sm-2 control-label">New Facility : </label>
-	<div class="col-sm-6">
-	<input class="form-control" id="facility"  type="text" name="facility" placeholder="new facility name" />
-		<?php echo $err_fac; ?>
-	</div>
-	</div>
-	
-	<div class="form-group">
-	<label for="optime" class="col-sm-2 control-label">Opening Time : </label>
-	<div class="col-sm-6">
-	<input class="form-control" style="width:200px;" id="optime" type="text" name="opening"/>
-		<?php echo $err_open; ?>
-	</div>
-	</div>
-	
-	<div class="form-group">
-	<label for="cltime" class="col-sm-2 control-label">Closing Time : </label>
-	<div class="col-sm-6">
-	<input class="form-control" style="width:200px;" id="cltime" type="text" name="closing"/>
-		<?php echo $err_close; ?>
-	</div>
-	</div>
-	
-	<div class="form-group">
-	<label for="capacity" class="col-sm-2 control-label">Capacity: </label>
-	<div class="col-sm-6">
-	<input class="form-control" style="width:200px;" id="capacity" type="text" style="width:200px" name="capacity" placeholder="capacity of the facility" />
-	</div>
-	</div>
-	
-<hr>
+		<div class="form-group">
+        <label for="region" class="col-sm-2 control-label">Region : </label>
+        <div class="col-sm-6">
+        <select class="form-control" id="region" name = "region">
+                <?php
+                foreach($regions as $eachregion) {
+                        echo "<option value = ".$eachregion['id'].">".$eachregion['region']."</option>";
+                }
+                ?>
+        </select>
+        </div>
+        </div>
+        
+        <div class="form-group">
+        <label for="facility" class="col-sm-2 control-label">New Facility : </label>
+        <div class="col-sm-6">
+        <input class="form-control" id="facility"  type="text" name="facility" placeholder="new facility name" />
+                <?php echo $err_fac; ?>
+        </div>
+        </div>
+        
+        <div class="form-group">
+        <label for="optime" class="col-sm-2 control-label">Opening Time : </label>
+        <div class="col-sm-6">
+        <input class="form-control" style="width:200px;" id="optime" type="text" name="opening"/>
+                <?php echo $err_open; ?>
+        </div>
+        </div>
+        
+        <div class="form-group">
+        <label for="cltime" class="col-sm-2 control-label">Closing Time : </label>
+        <div class="col-sm-6">
+        <input class="form-control" style="width:200px;" id="cltime" type="text" name="closing"/>
+                <?php echo $err_close; ?>
+        </div>
+        </div>
+        
+        <div class="form-group">
+        <label for="capacity" class="col-sm-2 control-label">Capacity: </label>
+        <div class="col-sm-6">
+        <input class="form-control" style="width:200px;" id="capacity" type="text" style="width:200px" name="capacity" placeholder="capacity of the facility" />
+        </div>
+        </div>	
+        <hr>
 	
 	<div style="margin-left:75px;">
 	<label>Whiteboard : </label>
@@ -177,7 +176,7 @@
 
 
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create"])) {
 	if($success1 && $success2 && isset($_POST["create"])) {
 		echo "The Academic room ".$fac." has been successfully created";
 	} else {
@@ -191,10 +190,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	}
 
-	if(isset($_POST["back"])){
-		close_db($conn);
-		header('Location: /cs2102/inc/admin-panel.php');
-	}
+}
+if(isset($_POST["back"])){
+	close_db($conn);
+	header('Location: /cs2102/inc/admin-panel.php');
 }
 ?>
 
