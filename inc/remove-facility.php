@@ -60,18 +60,25 @@
 
 ?>
 
-<form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST"> 
-	<label> Select a region from which the facility is to be deleted : </label>
-	<select name = "region" >
-		<option select value="base">Please Select</option>
+<form class="form-inline" role="form" action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
+	<div class="form-group">
+	<select class="form-control" style="width:200px;" id="rem-region"  name = "region" >
+		<option select value="base">Select Region</option>
 		<?php
 			foreach($regions as $eachregion) {
 				echo "<option value = ".$eachregion['id'].">".$eachregion['region']."</option>";
 			}
 		?>
-	</select><?php echo $flag; ?></br>
-	<button type="submit" name="showAll">Show All Facilities</button>
+	</select>
+	</div>
+	<button class="btn btn-primary" type="submit" name="showAll">Show All Facilities</button></br>
+	<?php if($flag != "") 
+		{?><div class="alert alert-danger alert-dismissable">
+  				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<?php echo $flag; ?>
+		</div><?php } ?>
 </form>
+</br></br>
 
 
 <?php
@@ -93,12 +100,12 @@
 
 				<!-- Display table -->
 				<form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST"> 
-				<table>
+				<table class="table" style="width:300px">
 				<?php
 					foreach($facilities as $eachFac) {
 						?><tr>
-							<td> <?php echo $eachFac['facility']; ?> </td>
-							<td> <button type="submit" name="idFac" value="<?php echo $eachFac['id']; ?>">Delete</button></td>
+							<td> <h4><span class='label label-default'><?php echo $eachFac['facility']; ?></span></h4> </td>
+							<td style="padding-top:18px"> <button class="btn btn-danger btn-xs" type="submit" name="idFac" value="<?php echo $eachFac['id']; ?>">Delete</button></td>
 						</tr><?php	
 					}
 				?>	
@@ -120,6 +127,6 @@
 
 </br>
 <a href='/cs2102/inc/admin-panel.php'>
-	<button style="margin-left:167px;" type="submit" class="btn btn-warning btn-xs" name="back">Back To Admin Panel</button>
+	<button type="submit" class="btn btn-warning btn-xs" name="back">Back To Admin Panel</button>
 </a>
 <?php include("footer.php"); ?>

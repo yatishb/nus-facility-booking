@@ -52,7 +52,7 @@
 			}
 		?>
 	</select><?php echo $flag; ?></br>
-	<button type="submit" name="showAll">Show All Facilities</button>
+	<button type="submit" name="showAll">Show Facilities In Region</button>
 </form>
 
 
@@ -138,7 +138,7 @@
 								<?php }
 							?>
 							<td> <form action="view-facility-details.php" method="POST">
-								<button type="submit" name="facility" value="<?php echo $eachFac['id']; ?>">View Details</button>
+								<button type="submit" name="facility" value="<?php echo $eachFac['id']; ?>">View</button>
 								<input type="hidden" name="region" value=<?php echo $idRegion ?> />
 								</form></td>
 							<td> <form action="modify-facility.php" method="POST">

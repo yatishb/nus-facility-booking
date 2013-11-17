@@ -2,7 +2,7 @@
 <?php
 	if($_SESSION['admin']) {
 ?>
-<h3 class="nusblue">Welcome Admin!</h3><br>
+<h3 class="nusblue">Admin Panel</h3><br>
 
 <div class="panel-group" id="accordion">
   <div class="panel panel-default">

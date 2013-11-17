@@ -1,6 +1,5 @@
 <?php include("header.php"); ?>
 <h2 class="nusblue">Modify Region</h2></br>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" ></script>
 
 <?php
 	if($_SESSION['admin']) {

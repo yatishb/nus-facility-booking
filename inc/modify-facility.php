@@ -1,6 +1,5 @@
 <?php include("header.php"); ?>
-<h2 class="nusblue">Modify Facility Attributes</h2>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" ></script>
+<h2 class="nusblue">Modify Facility</h2></br>
 
 <?php
 	if($_SESSION['admin']) {
@@ -10,10 +9,10 @@
 
 ?>
 
-<form method="POST" action="<?php $_SERVER["PHP_SELF"]; ?>">
+<form class="form-inline" role="form" method="POST" action="<?php $_SERVER["PHP_SELF"]; ?>">
 	<label for="editReg">Select Region:</label>
-	<select id="editReg" name="editReg">
-		<option select value="base">Please Select</option>
+	<select class="form-control" style="width:200px;" id="editReg" name="editReg">
+		<option select value="base">Select Region</option>
 	<?php
 		foreach ($regions as $row) {
 			echo '<option value="', $row['id'], '">', $row['region'], '</option>';
@@ -21,11 +20,11 @@
 	?>
 	</select>
 	
-	<label for="editFac">Select Facility:</label>
-	<select id="editFac" name="editFac">
-		<option>Please Select</option>
+	<label for="editFac">&nbsp&nbspSelect Facility:</label>
+	<select class="form-control" style="width:200px;" id="editFac" name="editFac">
+		<option>Select Facility</option>
 	</select>
-<input type="submit" value="Edit Facility"/>
+<button class="btn btn-primary" type="submit" value="Edit Facility">Edit Facility</button>
 </form>
 
 
@@ -82,14 +81,14 @@ $("#editFac").load("getter-view-facility-details.php?choice=" +  temp);
 
 			if($result1 && $result2) {
 				?>
-				<div class="alert alert-success alert-dismissable">
+				</br><div class="alert alert-success alert-dismissable">
 	  				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 					<?php echo "The facility has been successfully modified to ".$name." and the new features have been added"; ?>
 				</div>
 				<?php				
 			} else {
 				?>
-				<div class="alert alert-danger alert-dismissable">
+				</br><div class="alert alert-danger alert-dismissable">
 	  				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 					<?php echo "The facility ".$name." could not be modified"; ?>
 				</div>
@@ -109,40 +108,69 @@ $("#editFac").load("getter-view-facility-details.php?choice=" +  temp);
 
 			?>
 
-		</br></br>Modify the following fields to change the features present in the facility:</br>
-		<form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
-			Facility Name <input type = "text" name = "newName" value = "<?php echo $facility['name']?>" /></br>
-			Opening Time <input type = "time" name = "newOpen" value = "<?php echo $facility['open']; ?>" /></br>
-			Closing Time <input type = "time" name = "newClose" value = "<?php echo $facility['close']; ?>" /></br>
-			Capacity <input type = "text" name = "newCapacity" value = "<?php echo $facility['capacity']; ?>" /></br>
+		</br></br><h5 class='warningred'>Modify the following fields to change the features present in the facility:</h5></br>
+		<form class="form-inline" role="form" action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
+			<label class="col-sm-2 control-label" for="newName">Facility Name</label>
+			<input class="form-control" style="width:200px;" id="newName" type = "text" name = "newName" value = "<?php echo $facility['name']?>" /></br>
+			</br>
+
+			<label class="col-sm-2 control-label" for="newOpen">Opening Time</label> 
+			<input class="form-control" style="width:200px;" id="newOpen" type = "time" name = "newOpen" value = "<?php echo $facility['open']; ?>" /></br>
+			</br>
+
+			<label class="col-sm-2 control-label" for="newClose">Closing Time</label>
+			<input class="form-control" style="width:200px;" id="newClose" type = "time" name = "newClose" value = "<?php echo $facility['close']; ?>" /></br>
+			</br>
+
+			<label class="col-sm-2 control-label" for="newCapacity">Capacity</label>
+			<input class="form-control" style="width:200px;" id="newCapacity" type = "text" name = "newCapacity" value = "<?php echo $facility['capacity']; ?>" /></br>
+			</br>
+
+			<div style="margin-left:45px; margin-top:-45px;">
+			<table>
 			<?php
 				if($facility['type'] == 'academic') {
 					?>
-					Whiteboard 
-					<input type = "radio" name = "newWhiteboard" value = 1 <?php echo ($facility['whiteboard']==1)?'checked':'' ?>>Yes
-					<input type = "radio" name = "newWhiteboard" value = 0 <?php echo ($facility['whiteboard']==0)?'checked':'' ?>>No</br>
-					Audio System 
-					<input type = "radio" name = "newAudio" value = 1 <?php echo ($facility['audio']==1)?'checked':'' ?>>Yes
-					<input type = "radio" name = "newAudio" value = 0 <?php echo ($facility['audio']==0)?'checked':'' ?>>No</br>
-					Projector 
-					<input type = "radio" name = "newProjector" value = 1 <?php echo ($facility['projector']==1)?'checked':'' ?>>Yes
-					<input type = "radio" name = "newProjector" value = 0 <?php echo ($facility['projector']==0)?'checked':'' ?>>No</br>
+					<tr>
+					<td><label>Whiteboard &nbsp&nbsp&nbsp</label></td>
+					<td><input type = "radio" name = "newWhiteboard" value = 1 <?php echo ($facility['whiteboard']==1)?'checked':'' ?>>Yes &nbsp&nbsp&nbsp</td>
+					<td><input type = "radio" name = "newWhiteboard" value = 0 <?php echo ($facility['whiteboard']==0)?'checked':'' ?>>No &nbsp&nbsp&nbsp</td>
+					</br></tr>
+
+					<tr>
+					<td><label>Audio System &nbsp&nbsp&nbsp</label></td>
+					<td><input type = "radio" name = "newAudio" value = 1 <?php echo ($facility['audio']==1)?'checked':'' ?>>Yes &nbsp&nbsp&nbsp</td>
+					<td><input type = "radio" name = "newAudio" value = 0 <?php echo ($facility['audio']==0)?'checked':'' ?>>No &nbsp&nbsp&nbsp</td>
+					</br></tr>
+
+					<tr>
+					<td><label>Projector &nbsp&nbsp&nbsp</label></td>
+					<td><input type = "radio" name = "newProjector" value = 1 <?php echo ($facility['projector']==1)?'checked':'' ?>>Yes &nbsp&nbsp&nbsp</td>
+					<td><input type = "radio" name = "newProjector" value = 0 <?php echo ($facility['projector']==0)?'checked':'' ?>>No &nbsp&nbsp&nbsp</td>
+					</br></tr>
 					<?php
 				} else if($facility['type'] == 'sports') {
 					?>
-					Scoreboard 
-					<input type = "radio" name = "newScoreboard" value = 1 <?php echo ($facility['scoreboard']==1)?'checked':'' ?>>Yes
-					<input type = "radio" name = "newScoreboard" value = 0 <?php echo ($facility['scoreboard']==0)?'checked':'' ?>>No</br>
-					Spectator Area 
-					<input type = "radio" name = "newSpectator" value = 1 <?php echo ($facility['spectator']==1)?'checked':'' ?>>Yes
-					<input type = "radio" name = "newSpectator" value = 0 <?php echo ($facility['spectator']==0)?'checked':'' ?>>No</br>
+					<tr>
+					<td><label>Scoreboard &nbsp&nbsp&nbsp</label></td>
+					<td><input type = "radio" name = "newScoreboard" value = 1 <?php echo ($facility['scoreboard']==1)?'checked':'' ?>>Yes &nbsp&nbsp&nbsp</td>
+					<td><input type = "radio" name = "newScoreboard" value = 0 <?php echo ($facility['scoreboard']==0)?'checked':'' ?>>No &nbsp&nbsp&nbsp</td>
+					</br></tr>
+
+					<tr>
+					<td><label>Spectator Area &nbsp&nbsp&nbsp</label></td>
+					<td><input type = "radio" name = "newSpectator" value = 1 <?php echo ($facility['spectator']==1)?'checked':'' ?>>Yes &nbsp&nbsp&nbsp</td>
+					<td><input type = "radio" name = "newSpectator" value = 0 <?php echo ($facility['spectator']==0)?'checked':'' ?>>No &nbsp&nbsp&nbsp</td>
+					</br></tr>
 					<?php
 				}
 			?>
+			</table>
+			</div>
 			<input type="hidden" name="idFac" value=<?php echo $facility['id']; ?> />
 			<input type="hidden" name="type" value=<?php echo $facility['type']; ?> />
 			<input type="hidden" name="idRegion" value=<?php echo $facility['reg_id']; ?> />
-			<button type="submit" name="modify">Modify Facility</button>
+			</br></br><button class="btn btn-danger"  type="submit" name="modify">Modify Facility</button>
 		</form>
 
 		<?php
@@ -162,6 +190,6 @@ $("#editFac").load("getter-view-facility-details.php?choice=" +  temp);
 
 </br>
 <a href='/cs2102/inc/admin-panel.php'>
-	<button style="margin-left:167px;" type="submit" class="btn btn-warning btn-xs" name="back">Back To Admin Panel</button>
+	<button type="submit" class="btn btn-warning btn-xs" name="back">Back To Admin Panel</button>
 </a>
 <?php include("footer.php"); ?>
