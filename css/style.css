@@ -64,7 +64,6 @@ padding: 14px 24px;
 	margin: 0 auto;
 	background-image: url('/cs2102/img/feature.png');
 	padding: 30px;
-	padding-left: 140px;
 }
 
 .search-holder {
@@ -163,4 +162,12 @@ padding: 14px 24px;
 
 .warningred {
 	color: #ff0000;
+}
+
+.narrow {
+	width: 600px;
+}
+
+.centerme {
+	margin-left: 200px;
 }

@@ -1,17 +1,15 @@
 <?php include ("header.php");?>
-<DOCTYPE html>
-<html>
-<head>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" ></script>
-	<title>My Test Form</title>
-	<?php
-			$root = $_SERVER['DOCUMENT_ROOT'];
-			include ($root."/cs2102/inc/search-bar.php");		
-	?>
-</head>
-<body>
 
-<?php if (isset($_POST['submit'])) :
+<?php 
+$root = $_SERVER['DOCUMENT_ROOT'];
+?>
+<div class="home-holder">
+<?php
+include ($root."/cs2102/inc/search-bar.php");	
+?>
+</div>
+<?php
+if (isset($_POST['submit'])) :
 			$region = mysql_real_escape_string($_POST['region']);
 			$facility = mysql_real_escape_string($_POST['facility']);
 			$facilitytype = mysql_real_escape_string($_POST['facility-type']);
@@ -139,7 +137,7 @@
 							 and b.end <= CONCAT('".$bookdate."', ' ','". $endtime."')";
 				}
 				$query.=");";
-			echo $query;
+			//echo $query;
 			$result1 = mysql_query($query);
 
 
@@ -162,7 +160,7 @@
 					$query.= "	AND b.fac_id 
 								IN (SELECT fac_id 
 									FROM facility 
-									WHERE `type` =".$facilitytype." )
+									WHERE `type` ='".$facilitytype."' )
 							group by b.fac_id";				
 				}
 				elseif (!($region =="ANY") && $facilitytype =="ANY")
@@ -179,7 +177,7 @@
 								IN (SELECT fac_id 
 									FROM facility 
 									WHERE `reg_id` =".$region."
-									AND `type` =".$facilitytype." )
+									AND `type` = '".$facilitytype."' )
 							group by b.fac_id";				
 				}
 				else
@@ -189,11 +187,21 @@
 
 			}
 			$query.=";";
-			echo $query;
+			//echo $query;
 			
 			$result = mysql_query($query);
 				if ($result) :
-					echo '<table border="1">';
+					echo '<br><h3 class="nusblue">Matching Results</h3><br><table class="table">
+							<thead>
+								<tr> 
+									<th>Facility</th>
+									<th>Region</th>
+									<th>Type</th>
+									<th>Available Slots</th>
+									<th></th>
+								</tr>
+							</thead>		
+							<tbody>';
 					while ($row = mysql_fetch_array($result))
 					{
 			?>			
@@ -210,7 +218,7 @@
 									}
 							?>
 							<td>
-							<a href="book-facility.php?facid=<?php echo $row[7]; ?>&
+							<a class="btn btn-primary" href="book-facility.php?facid=<?php echo $row[7]; ?>&
 								start=<?php echo $starttime; ?>&
 								end=<?php echo $endtime; ?>&
 								date=<?php echo $bookdate; ?>&
@@ -219,12 +227,10 @@
 
 			<?php		
 					}
-					echo '</table>';
+					echo '</tbody></table>';
 ?>
 
 		<?php endif;?>
 	<?php endif; ?>
 <?php close_db($conn); ?>
-</body>
-</html>	
 <?php include ("footer.php");?>
