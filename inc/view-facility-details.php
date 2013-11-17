@@ -10,9 +10,9 @@
 
 ?>
 
-<form method="POST" action="<?php $_SERVER["PHP_SELF"]; ?>">
+<form class="form-inline" role="form" method="POST" action="<?php $_SERVER["PHP_SELF"]; ?>">
 	<label for="region">Select Region:</label>
-	<select id="region" name="region">
+	<select class="form-control" style="width:200px;" id="region" name="region">
 		<option select value="base">Please Select</option>
 	<?php
 		foreach ($regions as $row) {
@@ -21,11 +21,11 @@
 	?>
 	</select>
 	
-	<label for="facility">Select Facility:</label>
-	<select id="facility" name="facility">
+	<label for="facility">&nbsp&nbsp&nbsp Select Facility:</label>
+	<select class="form-control" style="width:200px;" id="facility" name="facility">
 		<option>Please Select</option>
 	</select>
-<input type="submit" value="View Facility"/>
+<button type="submit" class="btn btn-primary">View Facility</button>
 </form>
 
 
@@ -46,7 +46,7 @@ $("#facility").load("getter-view-facility-details.php?choice=" +  temp);
 
 		?>
 		<!--Display all the values obtained in the form of a table-->
-		<table>
+		</br></br><table class="table">
 			<tr>
 				<td>Facility Name :</td>
 				<td><?php echo $facility['name']; ?></td>
@@ -118,38 +118,41 @@ $("#facility").load("getter-view-facility-details.php?choice=" +  temp);
 		?>
 		</br></br>
 		<table>
-			<tr>
-				<th><form action = "<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
-					<button type="submit" name="previous">Previous Day</button>
+			<tr><div class="btn-group">
+				<th style="width:100px; text-align:left;"><form class="form-inline" role="form" action = "<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
+					<button type="submit" class="btn btn-default" name="previous">&laquo;</button>
 					<input type="hidden" name="date" value=<?php echo $date;?> />
 					<input type="hidden" name="facility" value=<?php echo $idFac;?> />
 					<input type="hidden" name="region" value=<?php echo $idRegion;?> />
 					</form></th>
-				<th><?php
+				<th style="width:100px; text-align:center;"><?php
 						if($date == date('Y-m-d')) {
 							echo "Today";
 						} else {
 							echo $date;
 						} ?></th>
-				<th><form action = "<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
-					<button type="submit" name="next">Next Day</button>
+				<th style="width:100px; text-align:right;"><form class="form-inline" role="form" action = "<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
+					<button class="btn btn-default" type="submit" name="next">&raquo;</button>
 					<input type="hidden" name="date" value=<?php echo $date;?> />
 					<input type="hidden" name="facility" value=<?php echo $idFac;?> />
 					<input type="hidden" name="region" value=<?php echo $idRegion;?> />
 					</form></th>
-			</tr>
+			</udiv></tr>
 			<tr>
-				<td><b>Start Time</b></td>
-				<td><b>End Time</b></td>
-				<td><b>User</b></td>
+				<td style="text-align:center"><b>Start Time</b></td>
+				<td style="text-align:center"><b>End Time</b></td>
+				<td style="text-align:center"><b>User</b></td>
 			</tr>
 			<?php
+				if(empty($bookings)){
+					echo "<tr><td>No bookings</td></tr>";
+				}
 				foreach($bookings as $eachbooking) {
 					?>
 					<tr>
-						<td><?php echo str_replace($date,"", $eachbooking['start']); ?></td>
-						<td><?php echo str_replace($date,"", $eachbooking['end']); ?></td>
-						<td><?php echo $eachbooking['user_id']; ?></td>
+						<td style="text-align:center"><?php echo str_replace($date,"", $eachbooking['start']); ?></td>
+						<td style="text-align:center"><?php echo str_replace($date,"", $eachbooking['end']); ?></td>
+						<td style="text-align:center"><?php echo $eachbooking['user_id']; ?></td>
 					</tr>
 					<?php
 				}
@@ -170,6 +173,6 @@ $("#facility").load("getter-view-facility-details.php?choice=" +  temp);
 
 </br>
 <a href='/cs2102/inc/admin-panel.php'>
-	<button style="margin-left:167px;" type="submit" class="btn btn-warning btn-xs" name="back">Back To Admin Panel</button>
+	<button type="submit" class="btn btn-warning btn-xs" name="back">Back To Admin Panel</button>
 </a>
 <?php include("footer.php"); ?>

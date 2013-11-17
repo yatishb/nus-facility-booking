@@ -71,12 +71,28 @@
 		close_db($conn);
 ?>
 
-<form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST" >
-	User Id: <input type="text" name="id" placeholder="must be 8 characters" value="<?php echo $id; ?>" /><?php echo $flagId; ?></br>
-	Name: <input type="text" name="name" value="<?php echo $name; ?>" /><?php echo $flagName; ?></br>
-	Password: <input type="password" name="password1" value="<?php echo $pass1; ?>" /><?php echo $flagPass1; ?></br>
-	Confirm Password: <input type="password" name="password2" value="<?php echo $pass2; ?>" /><?php echo $flagPass2; ?></br>
-	<button type="submit" name="createAdmin">Create New Admin</button>
+<form class="form-horizontal" role="form" action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST" >
+	<div class="form-group">
+		<label for="id" class="col-sm-2 control-label">User Id: </label>
+		<input class="form-control" style="width:200px" type="text" name="id" placeholder="must be 8 characters" value="<?php echo $id; ?>" />
+		<h5 class='warningred'><?php echo $flagId; ?></h5>
+	</div>
+	<div class="form-group">
+		<label for="name" class="col-sm-2 control-label">Name: </label>
+		<input class="form-control" style="width:200px" type="text" name="name" value="<?php echo $name; ?>" />
+		<h5 class='warningred'><?php echo $flagName; ?></h5>
+	</div>
+	<div class="form-group">
+		<label for="password1" class="col-sm-2 control-label">Password: </label>
+		<input class="form-control" style="width:200px" type="password" name="password1" value="<?php echo $pass1; ?>" />
+		<h5 class='warningred'><?php echo $flagPass1; ?></h5>
+	</div>
+	<div class="form-group">
+		<label for="password2" class="col-sm-2 control-label">Confirm Password: </label>
+		<input class="form-control" style="width:200px" type="password" name="password2" value="<?php echo $pass2; ?>" />
+		<h5 class='warningred'><?php echo $flagPass2; ?></h5>
+	</div>
+	<button style="margin-left:165px;" type="submit" class="btn btn-primary btn-lg" name="createAdmin">Create New Admin</button>
 </form>
 
 
@@ -92,6 +108,6 @@
 
 </br>
 <a href='/cs2102/inc/admin-panel.php'>
-	<button style="margin-left:165px;" type="submit" class="btn btn-default btn-xs" name="back">Back To Admin Panel</button>
+	<button style="margin-left:165px;" type="submit" class="btn btn-warning btn-xs" name="back">Back To Admin Panel</button>
 </a>
 <?php include("footer.php"); ?>

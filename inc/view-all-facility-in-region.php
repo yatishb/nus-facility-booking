@@ -42,17 +42,17 @@
 ?>
 
 
-<form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST"> 
+<form class="form-inline" role="form" action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST"> 
 	<label> Select a region : </label>
-	<select name = "region" >
+	<select class="form-control" style="width:200px;" name = "region" >
 		<option select value="base">Please Select</option>
 		<?php
 			foreach($regions as $eachregion) {
 				echo "<option value = ".$eachregion['id'].">".$eachregion['region']."</option>";
 			}
 		?>
-	</select><?php echo $flag; ?></br>
-	<button type="submit" name="showAll">Show Facilities In Region</button>
+	</select><label><h5 class='warningred'><?php echo $flag; ?></h5></label>
+	<button class="btn btn-primary" type="submit" name="showAll">Show Facilities In Region</button>
 </form>
 
 
@@ -68,9 +68,14 @@
 			$countFac = getNumberFacilitiesInRegion($idRegion);
 			//If there are any facilities in the selected region, list them in a table format
 			if($countFac == 0) {
-				echo "Sorry there is no facility in the region ".$regName;
+				?>
+				<div class="alert alert-danger alert-dismissable">
+	  				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<?php echo "Sorry there is no facility in the region ".$regName; ?>
+				</div>
+				<?php
 			} else {
-				echo "Facilities in ".$regName." :";
+				?></br></br><h4 class='warningred'><?php echo "Facilities in ".$regName." :";?></h4><?php
 				//Display all the facilities present in the region and allow deletion
 				$facilities = array();
 				$facilities = getAllAcademicFacilitiesInRegion($idRegion, $facilities);
@@ -78,25 +83,25 @@
 				?>
 
 				<!-- Display table --></br>
-				<table>
+				<table class="table">
 				<tr>
-					<th style='padding:5px 10px 5px 5px'>Name</th>
-					<th style='padding:5px 10px 5px 5px'>Opening Time</th>
-					<th style='padding:5px 10px 5px 5px'>Closing Time</th>
-					<th style='padding:5px 10px 5px 5px'>Capacity</th>
-					<th style='padding:5px 10px 5px 5px'>Whiteboard</th>
-					<th style='padding:5px 10px 5px 5px'>Audio System</th>
-					<th style='padding:5px 10px 5px 5px'>Projector</th>
-					<th style='padding:5px 10px 5px 5px'>Scoreboard</th>
-					<th style='padding:5px 10px 5px 5px'>Spectator Area</th>
+					<th style='width:100px'>Name</th>
+					<th style='width:100px'>Opening Time</th>
+					<th style='width:100px'>Closing Time</th>
+					<th style='width:100px'>Capacity</th>
+					<th >Whiteboard</th>
+					<th >Audio System</th>
+					<th >Projector</th>
+					<th >Scoreboard</th>
+					<th >Spectator Area</th>
 				</tr>
 				<?php
 					foreach($facilities as $eachFac) {
 						?><tr>
-							<td style='padding:5px 10px 5px 5px'> <?php echo $eachFac['name']; ?> </td>
-							<td style='padding:5px 10px 5px 5px'> <?php echo $eachFac['open']; ?> </td>
-							<td style='padding:5px 10px 5px 5px'> <?php echo $eachFac['close']; ?> </td>
-							<td style='padding:5px 10px 5px 5px'> <?php echo $eachFac['capacity']; ?> </td>
+							<td> <?php echo $eachFac['name']; ?> </td>
+							<td> <?php echo $eachFac['open']; ?> </td>
+							<td> <?php echo $eachFac['close']; ?> </td>
+							<td> <?php echo $eachFac['capacity']; ?> </td>
 							<?php
 								if($eachFac['whiteboard'] == 1)
 								{ ?>
@@ -138,15 +143,15 @@
 								<?php }
 							?>
 							<td> <form action="view-facility-details.php" method="POST">
-								<button type="submit" name="facility" value="<?php echo $eachFac['id']; ?>">View</button>
+								<button class="btn btn-primary" type="submit" name="facility" value="<?php echo $eachFac['id']; ?>">View</button>
 								<input type="hidden" name="region" value=<?php echo $idRegion ?> />
 								</form></td>
 							<td> <form action="modify-facility.php" method="POST">
-								<button type="submit" name="editFac" value="<?php echo $eachFac['id']; ?>">Edit</button>
+								<button class="btn btn-warning" type="submit" name="editFac" value="<?php echo $eachFac['id']; ?>">Edit</button>
 								<input type="hidden" name="editReg" value=<?php echo $idRegion ?> />
 								</form></td>
 							<td> <form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST"> 
-								<button type="submit" name="delFac" value="<?php echo $eachFac['id']; ?>">Delete</button>
+								<button class="btn btn-danger" type="submit" name="delFac" value="<?php echo $eachFac['id']; ?>">Delete</button>
 								<input type="hidden" name="idRegion" value=<?php echo $idRegion ?> />
 								</form></td>
 						</tr><?php	
@@ -167,6 +172,6 @@
 
 </br>
 <a href='/cs2102/inc/admin-panel.php'>
-	<button style="margin-left:167px;" type="submit" class="btn btn-warning btn-xs" name="back">Back To Admin Panel</button>
+	<button type="submit" class="btn btn-warning btn-xs" name="back">Back To Admin Panel</button>
 </a>
 <?php include("footer.php"); ?>
