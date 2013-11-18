@@ -62,7 +62,7 @@
 						$dtend = $row[1];
 						if(isset($_SESSION['username']))
 						{	
-							if(isset($_SESSION['admin'])){
+							if($_SESSION['admin']){
 								echo '<td><a class="btn btn-primary" href="confirm-booking.php?bookdate=',$date,'&bookreg=',$reg,'&bookstart=',$dtstart,'&bookend=',$dtend,'&bookfac=',$facid,'&bookuser=',$_SESSION['username'],'">
 								Block</a></td>';
 							} else {
