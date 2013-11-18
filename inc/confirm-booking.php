@@ -32,6 +32,11 @@
                         $result = mysql_query($query);
                         $countExist = mysql_fetch_array($result);
                         $countExist = $countExist[0];
+						
+						$query = "SELECT count(*) FROM booking WHERE start = '".$dtstart."' AND user_id = '".$user."';";
+                        $result = mysql_query($query);
+                        $otherBooking = mysql_fetch_array($result);
+                        $otherBooking = $otherBooking[0];
 
                         if($countExist == 0)
                         {
@@ -40,10 +45,18 @@
                                 $rowmax = mysql_fetch_array($max);
                                 $val = $rowmax[0] +1;        
                                 
-                                $query_insert = "INSERT INTO booking (`book_id`,`fac_id`,`reg_id`,`user_id`,`start`,`end`) VALUES(".$val.",".$_GET['bookfac'].",".$_GET['bookreg'].",'".$_GET['bookuser']."','".$dtstart."','".$dtend."')";
-                                mysql_query($query_insert);                
-                                
-                                echo '<script>window.location.href = "/cs2102/inc/user-bookings.php"; </script>        ';
+								if($otherBooking==0 && !$_SESSION['admin'])
+								{
+									$query_insert = "INSERT INTO booking (`book_id`,`fac_id`,`reg_id`,`user_id`,`start`,`end`) VALUES(".$val.",".$_GET['bookfac'].",".$_GET['bookreg'].",'".$_GET['bookuser']."','".$dtstart."','".$dtend."')";
+									mysql_query($query_insert);                
+									
+									echo '<script>window.location.href = "/cs2102/inc/user-bookings.php"; </script>        ';
+								}
+								else
+								{
+									echo '<script>alert("Cannot book different facilities at the same time");
+                                        window.location.href = "/cs2102/inc/book-search.php";</script>';        
+								}
                         }        
                 }
 
