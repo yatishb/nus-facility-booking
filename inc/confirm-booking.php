@@ -48,6 +48,7 @@
 								if($otherBooking==0 && !$_SESSION['admin'])
 								{
 									$query_insert = "INSERT INTO booking (`book_id`,`fac_id`,`reg_id`,`user_id`,`start`,`end`) VALUES(".$val.",".$_GET['bookfac'].",".$_GET['bookreg'].",'".$_GET['bookuser']."','".$dtstart."','".$dtend."')";
+									echo '<script>console.log ("',mysql_real_escape_string($query_insert),'");</script>';
 									mysql_query($query_insert);                
 									
 									echo '<script>window.location.href = "/cs2102/inc/user-bookings.php"; </script>        ';

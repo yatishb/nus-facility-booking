@@ -63,7 +63,7 @@ if (isset($_POST['submit']) || isset($_POST['submit1'])) :
 				}
 			$query.="GROUP BY f.fac_id";
 			$query.=";";
-			//echo $query,'</br>';
+			echo '<script>console.log ("',mysql_real_escape_string($query),'");</script>';
 			$result1 = mysql_query($query);
 
 			mysql_query("DROP VIEW IF EXISTS facility_booked_slots;");
@@ -138,6 +138,7 @@ if (isset($_POST['submit']) || isset($_POST['submit1'])) :
 				}
 				$query.=");";
 			//echo $query;
+			echo '<script>console.log ("',mysql_real_escape_string($query),'");</script>';
 			$result1 = mysql_query($query);
 
 
@@ -188,6 +189,7 @@ if (isset($_POST['submit']) || isset($_POST['submit1'])) :
 			}
 			$query.=";";
 			//echo $query;
+			echo '<script>console.log ("',mysql_real_escape_string($query),'");</script>';
 			
 			$result = mysql_query($query);
 				if ($result) :
