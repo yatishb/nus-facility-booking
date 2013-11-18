@@ -17,6 +17,7 @@
 				and f.fac_id = ".$facid."
 				AND t.start>='".$start."'
 				AND t.end <='".$end."';"; 
+		echo '<script>console.log ("',mysql_real_escape_string($query),'");</script>';
 		$result = mysql_query($query);
 		
 		$queryfac = "SELECT f.name, f.type, r.name

@@ -190,7 +190,7 @@ if (isset($_POST['submit']) || isset($_POST['submit1'])) :
 			$query.=";";
 			//echo $query;
 			echo '<script>console.log ("',mysql_real_escape_string($query),'");</script>';
-			
+
 			$result = mysql_query($query);
 				if ($result) :
 					echo '<br><h3 class="nusblue">Matching Results</h3><br><table class="table">
@@ -213,18 +213,18 @@ if (isset($_POST['submit']) || isset($_POST['submit1'])) :
 							<td><?php echo $row[2]; ?></td>
 							<td><?php echo $row[3]; ?></td>
 							<?php 
-							if($row[3] >5 ) {
-								if(($starttime=="ANY") && ($endtime=="ANY") && $bookdate==date('Y-m-d'))
-									{
-										$starttime=date('H:i:s');
-										$endtime=$row[5];		
-									}
-									elseif(($starttime=="ANY") && ($endtime=="ANY") && !($bookdate==date('Y-m-d')))
-									{
-										$starttime=$row[4];
-										$endtime=$row[5];		
-									}
-									
+							if(($starttime=="ANY") && ($endtime=="ANY") && $bookdate==date('Y-m-d'))
+								{
+									$starttime=date('H:i:s');
+									$endtime=$row[5];		
+								}
+								elseif(($starttime=="ANY") && ($endtime=="ANY") && !($bookdate==date('Y-m-d')))
+								{
+									$starttime=$row[4];
+									$endtime=$row[5];		
+								}
+								
+							if($row[3] >5 ) {									
 									
 							?>
 							<td>
@@ -243,12 +243,23 @@ if (isset($_POST['submit']) || isset($_POST['submit1'])) :
 								reg=<?php echo $row[6]; ?>">Few Slots</a></td>
 							<?php } else { ?>
 								<td><button class="btn btn-danger" disabled="disabled" >No Slots</button></td>
-							<?php } ?>
+							<?php } 
+
+							if($facility != 'ANY' && $facility == $row[7]) {
+								echo "Facility specified";
+								echo '<script>window.location.href="/cs2102/inc/book-facility.php?facid=', $row[7],'&
+												start=',$starttime,'&
+												end=',$endtime,'&
+												date',$bookdate,'&
+												reg=',$row[6],'"; </script>';
+							}
+							?>
 						</tr>
 
 			<?php		
 					}
 					echo '</tbody></table>';
+
 ?>
 
 		<?php endif;?>
