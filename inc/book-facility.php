@@ -30,12 +30,43 @@
 			echo '<div class="centerme"><h1 class="nusblue" style="margin-left:100px;">'.$rowres[0].'</h1>
 			<h3 style="margin-left:100px;"><span class="label label-primary">'.$date.'</span>&nbsp<span class="label label-default">'.$rowres[2].'</span>&nbsp<span class="label label-default" style="text-transform:capitalize">'.$rowres[1].'</span></h3><br>
 			';
+			if($rowres['type'] == 'academic'){
+				$query = "SELECT a.whiteboard, a.audio_system, a.projector 
+						  FROM academic a
+						  INNER JOIN facility f
+						  ON a.fac_id = f.fac_id 
+						  WHERE f.fac_id = ".$facid.";";
+				$resultAt = mysql_query($query);
+				$attribute = mysql_fetch_row($resultAt);
+				echo '<h3 style="margin-left:100px; margin-top:-20px">';
+				if($attribute[0] == 1)
+					echo '<span class="label label-default">'."Whiteboard".'</span>&nbsp';
+				if($attribute[1] == 1)
+					echo '<span class="label label-default">'."Audio System".'</span>&nbsp';
+				if($attribute[2] == 1)
+					echo '<span class="label label-default">'."Projector".'</span>&nbsp';
+				echo '</h3><br>';
+			} elseif($rowres['type'] == 'sports') {
+				$query = "SELECT s.scoreboard, s.spectator_area 
+						  FROM sports s
+						  INNER JOIN facility f
+						  ON s.fac_id = f.fac_id 
+						  WHERE f.fac_id = ".$facid.";";
+				$resultAt = mysql_query($query);
+				$attribute = mysql_fetch_row($resultAt);
+				echo '<h3 style="margin-left:100px; margin-top:-20px">';
+				if($attribute[0] == 1)
+					echo '<span class="label label-default">'."Scoreboard".'</span>&nbsp';
+				if($attribute[1] == 1)
+					echo '<span class="label label-default">'."Spectator Area".'</span>&nbsp';
+				echo '</h3><br>';
+			}
 			
 		}		
 		echo '<table class="table narrow">
 				<thead>
 					<th>Start Time</th>
-					<th>Start Time</th>
+					<th>End Time</th>
 					<th style="width:40px;"></th>
 				</thead>
 				<tbody>
