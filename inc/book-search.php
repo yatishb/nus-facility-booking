@@ -214,11 +214,18 @@ if (isset($_POST['submit']) || isset($_POST['submit1'])) :
 							<td><?php echo $row[3]; ?></td>
 							<?php 
 							if($row[3] >5 ) {
-								if(($starttime=="ANY") && ($endtime=="ANY"))
+								if(($starttime=="ANY") && ($endtime=="ANY") && $bookdate==date('Y-m-d'))
+									{
+										$starttime=date('H:i:s');
+										$endtime=$row[5];		
+									}
+									elseif(($starttime=="ANY") && ($endtime=="ANY") && !($bookdate==date('Y-m-d')))
 									{
 										$starttime=$row[4];
 										$endtime=$row[5];		
 									}
+									
+									
 							?>
 							<td>
 							<a class="btn btn-primary" href="book-facility.php?facid=<?php echo $row[7]; ?>&

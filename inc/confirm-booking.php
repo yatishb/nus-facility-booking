@@ -45,7 +45,7 @@
                                 $rowmax = mysql_fetch_array($max);
                                 $val = $rowmax[0] +1;        
                                 
-								if($otherBooking==0 && !$_SESSION['admin'])
+								if($otherBooking==0 || ($_SESSION['admin']==1))
 								{
 									$query_insert = "INSERT INTO booking (`book_id`,`fac_id`,`reg_id`,`user_id`,`start`,`end`) VALUES(".$val.",".$_GET['bookfac'].",".$_GET['bookreg'].",'".$_GET['bookuser']."','".$dtstart."','".$dtend."')";
 									echo '<script>console.log ("',mysql_real_escape_string($query_insert),'");</script>';

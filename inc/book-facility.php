@@ -14,7 +14,9 @@
 				where t.start>= f.open_time 
 				and t.end <= f.close_time
 				and f.reg_id = ".$reg."
-				and f.fac_id = ".$facid.";"; 
+				and f.fac_id = ".$facid."
+				AND t.start>='".$start."'
+				AND t.end <='".$end."';"; 
 		$result = mysql_query($query);
 		
 		$queryfac = "SELECT f.name, f.type, r.name
