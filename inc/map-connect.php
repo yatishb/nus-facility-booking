@@ -18,6 +18,7 @@
 <input type="hidden" name="start-time" value="ANY">
 <input type="hidden" name="end-time" value="ANY">
 <input type="hidden" name="date" value="ANY">
+<input type="hidden" name="page" value="1">
 <input type="hidden" name="submit1" value="ANY">
 </form>
 
