@@ -101,6 +101,7 @@ $result = mysql_query($query);
 		</div>
 	<br><br>
 	<p>
+	<input name="page"  type="hidden" value="1"></input>
 	<input name="submit" class="btn btn-warning btn-lg" type="submit" value="Search"></input>
 	</p>
 	</form>
